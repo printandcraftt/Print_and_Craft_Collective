@@ -456,9 +456,9 @@ function tryLuck(){
   localStorage.setItem("promoShown",new Date().toDateString());
   let roll=Math.random()*100;
   let discount=0;
-  if(roll<50) discount=0;
-  else if(roll<85) discount=10;
-  else if(roll<97) discount=15;
+  if(roll<70) discount=0;
+  else if(roll<90) discount=10;
+  else if(roll<98) discount=15;
   else discount=20;
 
   const box=document.getElementById("promoBox");
