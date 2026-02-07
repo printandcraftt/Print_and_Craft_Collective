@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Print and Craft Collective 💗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff0f6;
+  }
+
+  header {
+    background: linear-gradient(135deg, #ff4d6d, #ff85a1);
+    color: white;
+    padding: 25px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  header p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  section {
+    padding: 25px 15px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #c9184a;
+    margin-bottom: 20px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    transition: transform 0.25s;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: #777;
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Print & Craft Collective 💗</h1>
+  <p>Handmade gifts perfect for Valentine’s Day</p>
+</header>
+
+<!-- BOUQUET -->
+<section>
+  <h2>💐 Bouquets</h2>
+  <div class="grid" id="bouquet"></div>
+</section>
+
+<!-- BOX SET -->
+<section>
+  <h2>🎁 Box Sets</h2>
+  <div class="grid" id="boxset"></div>
+</section>
+
+<!-- BRACELET -->
+<section>
+  <h2>💖 Bracelets</h2>
+  <div class="grid" id="bracelet"></div>
+</section>
+
+<!-- FRAME -->
+<section>
+  <h2>🖼️ Frames</h2>
+  <div class="grid" id="frame"></div>
+</section>
+
+<!-- KEYCHAIN -->
+<section>
+  <h2>🔑 Keychains</h2>
+  <div class="grid" id="keychain"></div>
+</section>
+
+<!-- PHOTOSTRIPS -->
+<section>
+  <h2>📸 Photo Strips</h2>
+  <div class="grid" id="photostrips"></div>
+</section>
+
+<!-- POLAROID -->
+<section>
+  <h2>🖤 Polaroids</h2>
+  <div class="grid" id="polaroid"></div>
+</section>
+
+<footer>
+  © 2026 Print and Craft Collective • Student-friendly prices 💗
+</footer>
+
+<script>
+function loadImages(folder, list, targetId) {
+  const grid = document.getElementById(targetId);
+  list.forEach(file => {
+    const card = document.createElement("div");
+    card.className = "card";
+    const img = document.createElement("img");
+    img.src = `image/${folder}/${file}`;
+    img.alt = file;
+    card.appendChild(img);
+    grid.appendChild(card);
+  });
+}
+
+/* BOUQUET */
+loadImages("bouquet", [
+  "Bouquet.jpg","Bouquet1.jpg","Bouquet2.jpg","Bouquet3.jpg","Bouquet4.jpg",
+  "Bouquet5.jpg","Bouquet6.jpg","Bouquet7.jpg","Bouquet8.jpg","Bouquet9.jpg",
+  "Bouquet10.jpg","Bouquet11.jpg","Bouquet12.jpg","Bouquet13.jpg",
+  "Bouquet14.jpg","Bouquet15.jpg","Bouquet16.jpg","Bouquet17.jpg","Bouquet18.jpg"
+], "bouquet");
+
+/* BOX SET */
+loadImages("box-set", [
+  "Box set.jpg","Box set1.jpg","Box set2.jpg","Box set3.jpg","Box set4.jpg",
+  "Box set5.jpg","Box set6.jpg","Box set7.jpg","Box set8.jpg","Box set9.jpg",
+  "Box set10.jpg","Box set11.jpg","Box set12.jpg","Box set13.jpg",
+  "Box set14.jpg","Box set15.jpg","Box set16.jpg","Box set17.jpg"
+], "boxset");
+
+/* BRACELET */
+loadImages("bracelet", [
+  "Bracelet.jpg","Bracelet1.jpg","Bracelet2.jpg","Bracelet3.jpg",
+  "Bracelet4.jpg","Bracelet5.jpg","Bracelet6.jpg"
+], "bracelet");
+
+/* FRAME */
+loadImages("frame", [
+  "Frame.jpg","Frame1.jpg","Frame2.jpg"
+], "frame");
+
+/* KEYCHAIN */
+loadImages("keychain", [
+  "Keychain.jpg","Keychain1.jpg","Keychain2.jpg","Keychain3.jpg","Keychain4.jpg",
+  "Keychain5.jpg","Keychain6.jpg","Keychain7.jpg","Keychain8.jpg","Keychain9.jpg",
+  "Keychain10.jpg","Keychain11.jpg","Keychain12.jpg","Keychain13.jpg","Keychain14.jpg"
+], "keychain");
+
+/* PHOTOSTRIPS */
+loadImages("photostrips", [
+  "PhotoStrips.jpg","PhotoStrips1.jpg"
+], "photostrips");
+
+/* POLAROID */
+loadImages("polaroid", [
+  "Polaroid.jpg","Polaroid1.jpg","Polaroid2.jpg","Polaroid3.jpg","Polaroid4.jpg",
+  "Polaroid5.jpg","Polaroid6.jpg","Polaroid7.jpg","Polaroid8.jpg","Polaroid9.jpg",
+  "Polaroid10.jpg","Polaroid11.jpg","Polaroid12.jpg","Polaroid13.jpg"
+], "polaroid");
+</script>
+
+</body>
+</html>
 
