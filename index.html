@@ -6,185 +6,222 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #fff0f6;
-  }
-
-  header {
-    background: linear-gradient(135deg, #ff4d6d, #ff85a1);
-    color: white;
-    padding: 25px;
-    text-align: center;
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 28px;
-  }
-
-  header p {
-    margin-top: 8px;
-    font-size: 14px;
-  }
-
-  section {
-    padding: 25px 15px;
-  }
-
-  h2 {
-    text-align: center;
-    color: #c9184a;
-    margin-bottom: 20px;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-  }
-
-  .card {
-    background: white;
-    border-radius: 14px;
-    padding: 10px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-    transition: transform 0.25s;
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-  }
-
-  .card img {
-    width: 100%;
-    border-radius: 12px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 13px;
-    color: #777;
-  }
+body{
+  margin:0;
+  font-family:Poppins,Arial,sans-serif;
+  background:linear-gradient(180deg,#fff0f5,#ffffff);
+  color:#5a2a3a;
+}
+header{
+  background:linear-gradient(135deg,#ff4d6d,#ff8fab);
+  color:#fff;
+  text-align:center;
+  padding:40px 20px;
+}
+section{padding:40px 20px;}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+.product-card{
+  background:#fff;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 12px 30px rgba(255,120,150,.25);
+  text-align:center;
+}
+.product-card img.main-img{
+  width:100%;
+  border-radius:18px;
+}
+.view-btn{
+  margin-top:14px;
+  padding:12px 26px;
+  border-radius:30px;
+  border:none;
+  background:#ff4d6d;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+.designs{
+  display:none;
+  margin-top:15px;
+}
+.designs img{
+  width:120px;
+  height:170px;
+  object-fit:cover;
+  border-radius:14px;
+  margin:6px;
+}
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+  color:#777;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Print & Craft Collective 💗</h1>
-  <p>Handmade gifts perfect for Valentine’s Day</p>
+  <h1>💖 Print & Craft Collective 💖</h1>
+  <p>Valentine gifts made with love</p>
 </header>
 
-<!-- BOUQUET -->
 <section>
-  <h2>💐 Bouquets</h2>
-  <div class="grid" id="bouquet"></div>
-</section>
+<div class="products">
+
+<!-- BOUQUET -->
+<div class="product-card">
+  <img src="image/bouquet/Bouquet.jpg" class="main-img">
+  <h3>💐 Fuzzywire Bouquet</h3>
+  <button class="view-btn" onclick="toggle('bouquet')">View Designs</button>
+  <div class="designs" id="bouquet">
+    <img src="image/bouquet/Bouquet1.jpg">
+    <img src="image/bouquet/Bouquet2.jpg">
+    <img src="image/bouquet/Bouquet3.jpg">
+    <img src="image/bouquet/Bouquet4.jpg">
+    <img src="image/bouquet/Bouquet5.jpg">
+    <img src="image/bouquet/Bouquet6.jpg">
+    <img src="image/bouquet/Bouquet7.jpg">
+    <img src="image/bouquet/Bouquet8.jpg">
+    <img src="image/bouquet/Bouquet9.jpg">
+    <img src="image/bouquet/Bouquet10.jpg">
+    <img src="image/bouquet/Bouquet11.jpg">
+    <img src="image/bouquet/Bouquet12.jpg">
+    <img src="image/bouquet/Bouquet13.jpg">
+    <img src="image/bouquet/Bouquet14.jpg">
+    <img src="image/bouquet/Bouquet15.jpg">
+    <img src="image/bouquet/Bouquet16.jpg">
+    <img src="image/bouquet/Bouquet17.jpg">
+    <img src="image/bouquet/Bouquet18.jpg">
+  </div>
+</div>
 
 <!-- BOX SET -->
-<section>
-  <h2>🎁 Box Sets</h2>
-  <div class="grid" id="boxset"></div>
-</section>
+<div class="product-card">
+  <img src="image/box-set/Box set.jpg" class="main-img">
+  <h3>🎁 Polaroid Box Set</h3>
+  <button class="view-btn" onclick="toggle('boxset')">View Designs</button>
+  <div class="designs" id="boxset">
+    <img src="image/box-set/Box set1.jpg">
+    <img src="image/box-set/Box set2.jpg">
+    <img src="image/box-set/Box set3.jpg">
+    <img src="image/box-set/Box set4.jpg">
+    <img src="image/box-set/Box set5.jpg">
+    <img src="image/box-set/Box set6.jpg">
+    <img src="image/box-set/Box set7.jpg">
+    <img src="image/box-set/Box set8.jpg">
+    <img src="image/box-set/Box set9.jpg">
+    <img src="image/box-set/Box set10.jpg">
+    <img src="image/box-set/Box set11.jpg">
+    <img src="image/box-set/Box set12.jpg">
+    <img src="image/box-set/Box set13.jpg">
+    <img src="image/box-set/Box set14.jpg">
+    <img src="image/box-set/Box set15.jpg">
+    <img src="image/box-set/Box set16.jpg">
+    <img src="image/box-set/Box set17.jpg">
+  </div>
+</div>
 
 <!-- BRACELET -->
-<section>
-  <h2>💖 Bracelets</h2>
-  <div class="grid" id="bracelet"></div>
-</section>
+<div class="product-card">
+  <img src="image/bracelet/Bracelet.jpg" class="main-img">
+  <h3>💖 Bracelet</h3>
+  <button class="view-btn" onclick="toggle('bracelet')">View Designs</button>
+  <div class="designs" id="bracelet">
+    <img src="image/bracelet/Bracelet1.jpg">
+    <img src="image/bracelet/Bracelet2.jpg">
+    <img src="image/bracelet/Bracelet3.jpg">
+    <img src="image/bracelet/Bracelet4.jpg">
+    <img src="image/bracelet/Bracelet5.jpg">
+    <img src="image/bracelet/Bracelet6.jpg">
+  </div>
+</div>
 
 <!-- FRAME -->
-<section>
-  <h2>🖼️ Frames</h2>
-  <div class="grid" id="frame"></div>
-</section>
+<div class="product-card">
+  <img src="image/frame/Frame.jpg" class="main-img">
+  <h3>🖼️ Photo Frame</h3>
+  <button class="view-btn" onclick="toggle('frame')">View Designs</button>
+  <div class="designs" id="frame">
+    <img src="image/frame/Frame1.jpg">
+    <img src="image/frame/Frame2.jpg">
+  </div>
+</div>
 
 <!-- KEYCHAIN -->
-<section>
-  <h2>🔑 Keychains</h2>
-  <div class="grid" id="keychain"></div>
-</section>
+<div class="product-card">
+  <img src="image/keychain/Keychain.jpg" class="main-img">
+  <h3>🔑 Keychain</h3>
+  <button class="view-btn" onclick="toggle('keychain')">View Designs</button>
+  <div class="designs" id="keychain">
+    <img src="image/keychain/Keychain1.jpg">
+    <img src="image/keychain/Keychain2.jpg">
+    <img src="image/keychain/Keychain3.jpg">
+    <img src="image/keychain/Keychain4.jpg">
+    <img src="image/keychain/Keychain5.jpg">
+    <img src="image/keychain/Keychain6.jpg">
+    <img src="image/keychain/Keychain7.jpg">
+    <img src="image/keychain/Keychain8.jpg">
+    <img src="image/keychain/Keychain9.jpg">
+    <img src="image/keychain/Keychain10.jpg">
+    <img src="image/keychain/Keychain11.jpg">
+    <img src="image/keychain/Keychain12.jpg">
+    <img src="image/keychain/Keychain13.jpg">
+    <img src="image/keychain/Keychain14.jpg">
+  </div>
+</div>
 
 <!-- PHOTOSTRIPS -->
-<section>
-  <h2>📸 Photo Strips</h2>
-  <div class="grid" id="photostrips"></div>
-</section>
+<div class="product-card">
+  <img src="image/photostrips/PhotoStrips.jpg" class="main-img">
+  <h3>📸 Photostrips</h3>
+  <button class="view-btn" onclick="toggle('photostrips')">View Designs</button>
+  <div class="designs" id="photostrips">
+    <img src="image/photostrips/PhotoStrips1.jpg">
+  </div>
+</div>
 
 <!-- POLAROID -->
-<section>
-  <h2>🖤 Polaroids</h2>
-  <div class="grid" id="polaroid"></div>
+<div class="product-card">
+  <img src="image/polaroid/Polaroid.jpg" class="main-img">
+  <h3>🖤 Polaroid Prints</h3>
+  <button class="view-btn" onclick="toggle('polaroid')">View Designs</button>
+  <div class="designs" id="polaroid">
+    <img src="image/polaroid/Polaroid1.jpg">
+    <img src="image/polaroid/Polaroid2.jpg">
+    <img src="image/polaroid/Polaroid3.jpg">
+    <img src="image/polaroid/Polaroid4.jpg">
+    <img src="image/polaroid/Polaroid5.jpg">
+    <img src="image/polaroid/Polaroid6.jpg">
+    <img src="image/polaroid/Polaroid7.jpg">
+    <img src="image/polaroid/Polaroid8.jpg">
+    <img src="image/polaroid/Polaroid9.jpg">
+    <img src="image/polaroid/Polaroid10.jpg">
+    <img src="image/polaroid/Polaroid11.jpg">
+    <img src="image/polaroid/Polaroid12.jpg">
+    <img src="image/polaroid/Polaroid13.jpg">
+  </div>
+</div>
+
+</div>
 </section>
 
 <footer>
-  © 2026 Print and Craft Collective • Student-friendly prices 💗
+  © 2026 Print & Craft Collective • Student-friendly 💗
 </footer>
 
 <script>
-function loadImages(folder, list, targetId) {
-  const grid = document.getElementById(targetId);
-  list.forEach(file => {
-    const card = document.createElement("div");
-    card.className = "card";
-    const img = document.createElement("img");
-    img.src = `image/${folder}/${file}`;
-    img.alt = file;
-    card.appendChild(img);
-    grid.appendChild(card);
-  });
+function toggle(id){
+  const box=document.getElementById(id);
+  box.style.display = box.style.display==="block" ? "none" : "block";
 }
-
-/* BOUQUET */
-loadImages("bouquet", [
-  "Bouquet.jpg","Bouquet1.jpg","Bouquet2.jpg","Bouquet3.jpg","Bouquet4.jpg",
-  "Bouquet5.jpg","Bouquet6.jpg","Bouquet7.jpg","Bouquet8.jpg","Bouquet9.jpg",
-  "Bouquet10.jpg","Bouquet11.jpg","Bouquet12.jpg","Bouquet13.jpg",
-  "Bouquet14.jpg","Bouquet15.jpg","Bouquet16.jpg","Bouquet17.jpg","Bouquet18.jpg"
-], "bouquet");
-
-/* BOX SET */
-loadImages("box-set", [
-  "Box set.jpg","Box set1.jpg","Box set2.jpg","Box set3.jpg","Box set4.jpg",
-  "Box set5.jpg","Box set6.jpg","Box set7.jpg","Box set8.jpg","Box set9.jpg",
-  "Box set10.jpg","Box set11.jpg","Box set12.jpg","Box set13.jpg",
-  "Box set14.jpg","Box set15.jpg","Box set16.jpg","Box set17.jpg"
-], "boxset");
-
-/* BRACELET */
-loadImages("bracelet", [
-  "Bracelet.jpg","Bracelet1.jpg","Bracelet2.jpg","Bracelet3.jpg",
-  "Bracelet4.jpg","Bracelet5.jpg","Bracelet6.jpg"
-], "bracelet");
-
-/* FRAME */
-loadImages("frame", [
-  "Frame.jpg","Frame1.jpg","Frame2.jpg"
-], "frame");
-
-/* KEYCHAIN */
-loadImages("keychain", [
-  "Keychain.jpg","Keychain1.jpg","Keychain2.jpg","Keychain3.jpg","Keychain4.jpg",
-  "Keychain5.jpg","Keychain6.jpg","Keychain7.jpg","Keychain8.jpg","Keychain9.jpg",
-  "Keychain10.jpg","Keychain11.jpg","Keychain12.jpg","Keychain13.jpg","Keychain14.jpg"
-], "keychain");
-
-/* PHOTOSTRIPS */
-loadImages("photostrips", [
-  "PhotoStrips.jpg","PhotoStrips1.jpg"
-], "photostrips");
-
-/* POLAROID */
-loadImages("polaroid", [
-  "Polaroid.jpg","Polaroid1.jpg","Polaroid2.jpg","Polaroid3.jpg","Polaroid4.jpg",
-  "Polaroid5.jpg","Polaroid6.jpg","Polaroid7.jpg","Polaroid8.jpg","Polaroid9.jpg",
-  "Polaroid10.jpg","Polaroid11.jpg","Polaroid12.jpg","Polaroid13.jpg"
-], "polaroid");
 </script>
 
 </body>
 </html>
-
