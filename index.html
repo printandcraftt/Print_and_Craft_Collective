@@ -51,12 +51,8 @@ section{padding:40px 20px;}
   cursor:pointer;
 }
 
-/* SLIDER */
-.designs{
-  display:none;
-  margin-top:15px;
-  position:relative;
-}
+/* gallery */
+.designs{display:none;margin-top:15px;position:relative;}
 .design-track{
   display:flex;
   gap:10px;
@@ -84,7 +80,7 @@ section{padding:40px 20px;}
 .arrow.left{left:-12px;}
 .arrow.right{right:-12px;}
 
-/* ZOOM */
+/* zoom */
 .lightbox{
   display:none;
   position:fixed;
@@ -98,6 +94,15 @@ section{padding:40px 20px;}
   max-width:90%;
   max-height:90%;
 }
+.lb-arrow{
+  position:absolute;
+  top:50%;
+  font-size:40px;
+  color:#fff;
+  cursor:pointer;
+}
+.lb-arrow.left{left:20px;}
+.lb-arrow.right{right:20px;}
 
 footer{
   text-align:center;
@@ -154,7 +159,7 @@ footer{
 <div class="product-card">
   <img src="image/box-set/Box set.jpg" class="main-img">
   <h3>🎁 Polaroid Box Set</h3>
-  <div class="price">45 pcs — ₱145 (with box)</div>
+  <div class="price">45 pcs — ₱145</div>
   <button class="view-btn" onclick="toggle('boxset')">View Designs</button>
   <div class="designs" id="boxset">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
@@ -295,7 +300,9 @@ footer{
 </footer>
 
 <div class="lightbox" id="lightbox">
+  <span class="lb-arrow left" onclick="prev()">‹</span>
   <img id="zoomed">
+  <span class="lb-arrow right" onclick="next()">›</span>
 </div>
 
 <script>
@@ -303,28 +310,48 @@ function toggle(id){
   const box=document.getElementById(id);
   box.style.display = box.style.display==="block" ? "none" : "block";
 }
-
 function slide(btn,dir){
   btn.parentElement.querySelector(".design-track").scrollLeft += dir*150;
 }
 
+let imgs=[], index=0;
 const lightbox=document.getElementById("lightbox");
 const zoomed=document.getElementById("zoomed");
 
 function zoom(img){
+  imgs=[...img.parentElement.children];
+  index=imgs.indexOf(img);
   zoomed.src=img.src;
   lightbox.style.display="flex";
-  history.pushState({zoom:true},"");
+  history.pushState({z:1},"");
 }
-
+function next(){
+  index=(index+1)%imgs.length;
+  zoomed.src=imgs[index].src;
+}
+function prev(){
+  index=(index-1+imgs.length)%imgs.length;
+  zoomed.src=imgs[index].src;
+}
 function closeZoom(){
   lightbox.style.display="none";
 }
 
-lightbox.addEventListener("click",closeZoom);
-window.addEventListener("popstate",()=>{ if(lightbox.style.display==="flex") closeZoom(); });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeZoom(); });
+lightbox.addEventListener("click",e=>{
+  if(e.target===lightbox) closeZoom();
+});
+
+let sx=0;
+lightbox.addEventListener("touchstart",e=>sx=e.touches[0].clientX);
+lightbox.addEventListener("touchend",e=>{
+  let ex=e.changedTouches[0].clientX;
+  if(ex<sx-50) next();
+  if(ex>sx+50) prev();
+});
+
+window.addEventListener("popstate",()=>closeZoom());
 </script>
 
 </body>
 </html>
+
