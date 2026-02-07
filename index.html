@@ -317,7 +317,24 @@ section{
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
-  </div> <!-- end products -->
+   </div> <!-- end products -->
+</section>
+
+<!-- CONTACT / ORDER NOW SECTION -->
+<section style="text-align:center;padding:40px 20px;background:#fff0f5;">
+  <h2 style="color:#d6336c;">💖 Order Now 💖</h2>
+
+  <a href="https://m.me/61579128398313" target="_blank"
+     style="display:block;margin:12px auto;max-width:300px;"
+     class="floating-btn">💬 Message on Messenger</a>
+
+  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank"
+     style="display:block;margin:12px auto;max-width:300px;"
+     class="floating-btn">👤 Facebook Account</a>
+
+  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank"
+     style="display:block;margin:12px auto;max-width:300px;"
+     class="floating-btn">📘 Facebook Page</a>
 </section>
 
 <footer>
@@ -332,7 +349,7 @@ section{
   </a>
 </div>
 
-<!-- LIGHTBOX ZOOM -->
+<!-- IMAGE ZOOM -->
 <div class="lightbox" id="lightbox">
   <span class="lb-arrow lb-left" onclick="prevImg()">‹</span>
   <img id="zoomed">
@@ -341,12 +358,16 @@ section{
 
 <!-- PROMO POPUP -->
 <div class="lightbox" id="promo" style="background:rgba(0,0,0,.6);">
-  <div style="background:#fff;padding:25px;border-radius:20px;text-align:center;max-width:320px;">
+  <div id="promoBox"
+       style="background:#fff;padding:25px;border-radius:20px;
+              text-align:center;max-width:320px;position:relative;">
     <h3>🎁 Valentine Promo</h3>
     <p>Try your luck to win a discount 💗</p>
     <button class="view-btn" onclick="tryLuck()">TRY MY LUCK</button>
     <br><br>
-    <button class="view-btn" style="background:#ffd6e0;color:#ff4d6d" onclick="closePromo()">Maybe later</button>
+    <button class="view-btn"
+            style="background:#ffd6e0;color:#ff4d6d"
+            onclick="closePromo()">Maybe later</button>
   </div>
 </div>
 
@@ -362,7 +383,7 @@ function slide(btn,dir){
   btn.parentElement.querySelector(".design-track").scrollLeft += dir*150;
 }
 
-/* ZOOM WITH ARROWS */
+/* IMAGE ZOOM */
 let zoomImgs=[], zoomIndex=0;
 const lightbox=document.getElementById("lightbox");
 const zoomed=document.getElementById("zoomed");
@@ -374,9 +395,7 @@ function zoom(img){
   lightbox.style.display="flex";
   history.pushState({zoom:true},"");
 }
-function closeZoom(){
-  lightbox.style.display="none";
-}
+function closeZoom(){ lightbox.style.display="none"; }
 function nextImg(){
   zoomIndex=(zoomIndex+1)%zoomImgs.length;
   zoomed.src=zoomImgs[zoomIndex].src;
@@ -388,13 +407,16 @@ function prevImg(){
 lightbox.addEventListener("click",e=>{
   if(e.target===lightbox) closeZoom();
 });
-window.addEventListener("popstate",()=>{ if(lightbox.style.display==="flex") closeZoom(); });
+window.addEventListener("popstate",()=>{
+  if(lightbox.style.display==="flex") closeZoom();
+});
 
 /* COUNTDOWN */
 function startCountdown(){
   let year=new Date().getFullYear();
   let target=new Date(`February 14, ${year} 00:00:00`).getTime();
-  if(Date.now()>target) target=new Date(`February 14, ${year+1} 00:00:00`).getTime();
+  if(Date.now()>target)
+    target=new Date(`February 14, ${year+1} 00:00:00`).getTime();
 
   setInterval(()=>{
     let d=target-Date.now();
@@ -408,7 +430,7 @@ function startCountdown(){
 }
 startCountdown();
 
-/* PROMO LOGIC */
+/* PROMO */
 setTimeout(()=>{
   if(localStorage.getItem("promoShown")!==new Date().toDateString()){
     document.getElementById("promo").style.display="flex";
@@ -420,13 +442,16 @@ function closePromo(){
   document.getElementById("promo").style.display="none";
 }
 
+/* RANDOM CODE */
 function genCode(){
   const chars="ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
   let code="";
-  for(let i=0;i<6;i++) code+=chars[Math.floor(Math.random()*chars.length)];
+  for(let i=0;i<6;i++)
+    code+=chars[Math.floor(Math.random()*chars.length)];
   return code;
 }
 
+/* TRY LUCK */
 function tryLuck(){
   localStorage.setItem("promoShown",new Date().toDateString());
   let roll=Math.random()*100;
@@ -436,27 +461,36 @@ function tryLuck(){
   else if(roll<97) discount=15;
   else discount=20;
 
-  const promo=document.getElementById("promo");
+  const box=document.getElementById("promoBox");
+
   if(discount===0){
-    promo.innerHTML=`
-    <div style="background:#fff;padding:25px;border-radius:20px;text-align:center;">
+    box.innerHTML=`
       <h3>😔 Better luck next time</h3>
-      <button class="view-btn" onclick="closePromo()">Close</button>
-    </div>`;
+      <button class="view-btn" onclick="closePromo()">Close</button>`;
     return;
   }
 
   let code=genCode();
   let date=new Date().toLocaleString();
-  promo.innerHTML=`
-  <div style="background:#fff;padding:25px;border-radius:20px;text-align:center;">
+
+  box.innerHTML=`
+    <button id="closeX"
+            style="display:none;position:absolute;top:10px;right:15px;
+                   border:none;background:none;font-size:22px;cursor:pointer;">✖</button>
     <h3>🎉 Congratulations!</h3>
     <h2>${discount}% OFF</h2>
     <p>Code: <b>${code}</b></p>
     <p>${date}</p>
     <p>📸 Screenshot & send to us</p>
-    <a class="view-btn" href="https://m.me/61579128398313" target="_blank">Message now</a>
-  </div>`;
+    <a class="view-btn" href="https://m.me/61579128398313" target="_blank">
+      Message now
+    </a>`;
+
+  // show X after 5 seconds
+  setTimeout(()=>{
+    document.getElementById("closeX").style.display="block";
+    document.getElementById("closeX").onclick=closePromo;
+  },5000);
 }
 </script>
 
