@@ -501,10 +501,18 @@ setTimeout(()=>document.getElementById("promo-close").style.display="block",5000
 return;
 }
 const product=products[Math.floor(Math.random()*products.length)];
-promoBox.innerHTML=`<h3>🎉 Congratulations!</h3><h2>10% OFF</h2><p><b>Applies to:</b> ${product}</p>
-<p>📸 Screenshot & send to us</p>
-<a href="https://m.me/61579128398313" target="_blank"><button>Message Us</button></a>
-<span id="promo-close" onclick="promo.style.display='none'">✕</span>`;
+const now = new Date().toLocaleString();
+
+promoBox.innerHTML = `
+  <h3>🎉 Congratulations!</h3>
+  <h2>10% OFF</h2>
+  <p><b>Applies to:</b> ${product}</p>
+  <p><b>Date & Time:</b> ${now}</p>
+  <p>📸 Screenshot & send to us</p>
+  <a href="https://m.me/61579128398313" target="_blank">
+    <button>Message Us</button>
+  </a>
+  <span id="promo-close" onclick="promo.style.display='none'">✕</span>`;
 setTimeout(()=>document.getElementById("promo-close").style.display="block",5000);
 }
 </script>
