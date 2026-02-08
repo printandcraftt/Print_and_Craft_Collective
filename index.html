@@ -2,30 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Print and Craft💗</title>
+<title>Print & Craft Collective 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
+
 body{
-  margin:0;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(180deg,#fff0f5,#ffffff);
   color:#5a2a3a;
 }
+
+/* HEADER */
 header{
   background:linear-gradient(135deg,#ff4d6d,#ff8fab);
   color:#fff;
   text-align:center;
   padding:40px 20px;
 }
-section{
-  padding:40px 20px;
-}
+
+/* PRODUCTS */
+section{padding:40px 20px}
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:25px;
 }
+
 .product-card{
   background:#fff;
   border-radius:22px;
@@ -33,17 +37,19 @@ section{
   box-shadow:0 12px 30px rgba(255,120,150,.25);
   text-align:center;
 }
+
 .product-card img.main-img{
   width:100%;
   border-radius:18px;
 }
+
 .price{
-  margin-top:6px;
+  margin:8px 0;
   font-weight:bold;
   color:#d6336c;
 }
+
 .view-btn{
-  margin-top:14px;
   padding:12px 26px;
   border-radius:30px;
   border:none;
@@ -53,18 +59,20 @@ section{
   cursor:pointer;
 }
 
-/* SLIDER */
+/* DESIGNS SLIDER */
 .designs{
   display:none;
   margin-top:15px;
   position:relative;
 }
+
 .design-track{
   display:flex;
   gap:10px;
   overflow-x:auto;
   scroll-behavior:smooth;
 }
+
 .design-track img{
   width:120px;
   height:170px;
@@ -72,21 +80,25 @@ section{
   border-radius:14px;
   cursor:pointer;
 }
+
+/* ARROWS */
 .arrow{
   position:absolute;
-  top:40%;
+  top:50%;
+  transform:translateY(-50%);
   background:#ff4d6d;
   color:#fff;
   border:none;
-  font-size:22px;
+  font-size:24px;
   padding:6px 12px;
   border-radius:50%;
   cursor:pointer;
+  z-index:2;
 }
-.arrow.left{left:-12px;}
-.arrow.right{right:-12px;}
+.arrow.left{left:-10px}
+.arrow.right{right:-10px}
 
-/* ZOOM */
+/* LIGHTBOX */
 .lightbox{
   display:none;
   position:fixed;
@@ -96,46 +108,85 @@ section{
   align-items:center;
   z-index:9999;
 }
+
 .lightbox img{
   max-width:90%;
   max-height:90%;
 }
-.lb-arrow{
-  position:absolute;
-  top:50%;
-  font-size:40px;
-  color:#fff;
-  cursor:pointer;
-}
-.lb-left{left:20px;}
-.lb-right{right:20px;}
 
-/* FLOATING */
-.floating-wrap{
+/* FLOATING ORDER */
+#order-float{
   position:fixed;
   bottom:20px;
   right:20px;
-  z-index:10000;
-  text-align:center;
-}
-.countdown{
-  background:#fff;
-  color:#ff4d6d;
-  padding:10px 16px;
-  border-radius:30px;
-  font-weight:bold;
-  box-shadow:0 6px 18px rgba(255,77,109,.35);
-  margin-bottom:10px;
-  font-size:13px;
-}
-.floating-btn{
-  display:block;
   background:#ff4d6d;
   color:#fff;
   padding:16px 26px;
-  border-radius:35px;
+  border-radius:40px;
   font-weight:bold;
   text-decoration:none;
+  z-index:9999;
+}
+
+/* COUNTDOWN */
+#countdown{
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  background:#fff;
+  color:#ff4d6d;
+  padding:12px 20px;
+  border-radius:30px;
+  font-weight:bold;
+  box-shadow:0 10px 25px rgba(255,77,109,.3);
+  z-index:9999;
+}
+
+/* PROMO */
+#promo{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:10000;
+  justify-content:center;
+  align-items:center;
+}
+
+#promo-box{
+  background:#fff;
+  padding:28px;
+  border-radius:22px;
+  text-align:center;
+  max-width:320px;
+  position:relative;
+}
+
+#promo-box button{
+  margin-top:12px;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+#promo-close{
+  display:none;
+  position:absolute;
+  top:10px;
+  right:14px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:13px;
+  color:#777;
 }
 </style>
 </head>
@@ -143,18 +194,21 @@ section{
 <body>
 
 <header>
-  <h1>💖 Print & Craft 💖</h1>
+  <h1>💖 Print & Craft Collective 💖</h1>
   <p>Valentine gifts made with love</p>
 </header>
 
 <section>
   <div class="products">
+<!-- ================= PRODUCTS ================= -->
+
 <!-- BOUQUET -->
 <div class="product-card">
   <img src="image/bouquet/Bouquet.jpg" class="main-img">
   <h3>💐 Fuzzywire Bouquet</h3>
   <div class="price">₱280 – ₱400</div>
   <button class="view-btn" onclick="toggle('bouquet')">View Designs</button>
+
   <div class="designs" id="bouquet">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
@@ -181,12 +235,13 @@ section{
   </div>
 </div>
 
-<!-- POLAROID -->
+<!-- POLAROID PRINTS -->
 <div class="product-card">
   <img src="image/polaroid/Polaroid.jpg" class="main-img">
   <h3>🖤 Polaroid Prints</h3>
   <div class="price">Starts at ₱50 (15 pcs)</div>
   <button class="view-btn" onclick="toggle('polaroid')">View Designs</button>
+
   <div class="designs" id="polaroid">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
@@ -214,6 +269,7 @@ section{
   <h3>🎁 Polaroid Box Set</h3>
   <div class="price">45 pcs — ₱145 (with box)</div>
   <button class="view-btn" onclick="toggle('boxset')">View Designs</button>
+
   <div class="designs" id="boxset">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
@@ -245,6 +301,7 @@ section{
   <h3>💖 Bracelet</h3>
   <div class="price">₱35 – ₱99</div>
   <button class="view-btn" onclick="toggle('bracelet')">View Designs</button>
+
   <div class="designs" id="bracelet">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
@@ -265,6 +322,7 @@ section{
   <h3>🖼️ Photo Frame</h3>
   <div class="price">₱110</div>
   <button class="view-btn" onclick="toggle('frame')">View Designs</button>
+
   <div class="designs" id="frame">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
@@ -281,6 +339,7 @@ section{
   <h3>🔑 Keychain</h3>
   <div class="price">₱20 – ₱35</div>
   <button class="view-btn" onclick="toggle('keychain')">View Designs</button>
+
   <div class="designs" id="keychain">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
@@ -309,6 +368,7 @@ section{
   <h3>📸 Photostrips</h3>
   <div class="price">2 pcs — ₱20</div>
   <button class="view-btn" onclick="toggle('photostrips')">View Designs</button>
+
   <div class="designs" id="photostrips">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
@@ -317,90 +377,50 @@ section{
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
-   </div> <!-- end products -->
+
+<!-- ================= END PRODUCTS ================= -->
+
+  </div>
 </section>
 
-<!-- CONTACT / ORDER NOW SECTION -->
-<section style="text-align:center;padding:40px 20px;background:#fff0f5;">
-  <h2 style="color:#d6336c;">💖 Order Now 💖</h2>
+<div id="countdown">Loading…</div>
 
-  <a href="https://m.me/61579128398313" target="_blank"
-     style="display:block;margin:12px auto;max-width:300px;"
-     class="floating-btn">💬 Message on Messenger</a>
+<a id="order-float" href="https://m.me/61579128398313" target="_blank">💬 Order Now</a>
 
-  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank"
-     style="display:block;margin:12px auto;max-width:300px;"
-     class="floating-btn">👤 Facebook Account</a>
-
-  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank"
-     style="display:block;margin:12px auto;max-width:300px;"
-     class="floating-btn">📘 Facebook Page</a>
-</section>
-
-<footer>
-  © 2026 Print & Craft Collective • Student-friendly 💗
-</footer>
-
-<!-- FLOATING ORDER + COUNTDOWN -->
-<div class="floating-wrap">
-  <div class="countdown" id="countdown">⏳ Loading…</div>
-  <a class="floating-btn" href="https://m.me/61579128398313" target="_blank">
-    💬 Order Now
-  </a>
-</div>
-
-<!-- IMAGE ZOOM -->
 <div class="lightbox" id="lightbox">
-  <span class="lb-arrow lb-left" onclick="prevImg()">‹</span>
+  <button class="arrow left" onclick="zoomPrev()">‹</button>
   <img id="zoomed">
-  <span class="lb-arrow lb-right" onclick="nextImg()">›</span>
+  <button class="arrow right" onclick="zoomNext()">›</button>
 </div>
 
-<!-- PROMO POPUP -->
-<div class="lightbox" id="promo" style="background:rgba(0,0,0,.6);">
-  <div id="promoBox"
-       style="background:#fff;padding:25px;border-radius:20px;
-              text-align:center;max-width:320px;position:relative;">
+<div id="promo">
+  <div id="promo-box">
     <h3>🎁 Valentine Promo</h3>
-    <p>Try your luck to win a discount 💗</p>
-    <button class="view-btn" onclick="tryLuck()">TRY MY LUCK</button>
-    <br><br>
-    <button class="view-btn"
-            style="background:#ffd6e0;color:#ff4d6d"
-            onclick="closePromo()">Maybe later</button>
+    <p>You have ONE chance today 💕</p>
+    <button onclick="tryLuck()">TRY MY LUCK</button>
+    <span id="promo-close" onclick="closePromo()">✕</span>
   </div>
 </div>
 
-<script>
+<footer>
+  © 2026 Print & Craft Collective • Handmade with 💗
+</footer>
 
 <script>
-
-/* PROMO PRODUCTS (NO BOUQUET) */
-const promoProducts = [
-  "Polaroid Prints",
-  "Polaroid Box Set",
-  "Bracelet",
-  "Photo Frame",
-  "Keychain",
-  "Photostrips"
-];
-
-function pickProduct(){
-  return promoProducts[Math.floor(Math.random() * promoProducts.length)];
-}
-/* TOGGLE DESIGNS */
+/* TOGGLE */
 function toggle(id){
   const el=document.getElementById(id);
-  el.style.display = el.style.display==="block" ? "none" : "block";
+  if(el) el.style.display=el.style.display==="block"?"none":"block";
 }
 
-/* SLIDER */
+/* SLIDE */
 function slide(btn,dir){
-  btn.parentElement.querySelector(".design-track").scrollLeft += dir*150;
+  const track=btn.parentElement.querySelector(".design-track");
+  if(track) track.scrollLeft+=dir*160;
 }
 
-/* IMAGE ZOOM */
-let zoomImgs=[], zoomIndex=0;
+/* ZOOM + LIGHTBOX */
+let zoomImgs=[],zoomIndex=0;
 const lightbox=document.getElementById("lightbox");
 const zoomed=document.getElementById("zoomed");
 
@@ -411,142 +431,80 @@ function zoom(img){
   lightbox.style.display="flex";
   history.pushState({zoom:true},"");
 }
-function closeZoom(){ lightbox.style.display="none"; }
-function nextImg(){
+
+function zoomNext(){
   zoomIndex=(zoomIndex+1)%zoomImgs.length;
   zoomed.src=zoomImgs[zoomIndex].src;
 }
-function prevImg(){
+
+function zoomPrev(){
   zoomIndex=(zoomIndex-1+zoomImgs.length)%zoomImgs.length;
   zoomed.src=zoomImgs[zoomIndex].src;
 }
+
 lightbox.addEventListener("click",e=>{
-  if(e.target===lightbox) closeZoom();
+  if(e.target===lightbox) lightbox.style.display="none";
 });
-window.addEventListener("popstate",()=>{
-  if(lightbox.style.display==="flex") closeZoom();
+
+window.addEventListener("popstate",()=>lightbox.style.display="none");
+
+/* SWIPE */
+let sx=0;
+lightbox.addEventListener("touchstart",e=>sx=e.touches[0].clientX);
+lightbox.addEventListener("touchend",e=>{
+  let ex=e.changedTouches[0].clientX;
+  if(ex<sx-50) zoomNext();
+  if(ex>sx+50) zoomPrev();
 });
 
 /* COUNTDOWN */
-function startCountdown(){
-  let year=new Date().getFullYear();
-  let target=new Date(`February 14, ${year} 00:00:00`).getTime();
-  if(Date.now()>target)
-    target=new Date(`February 14, ${year+1} 00:00:00`).getTime();
-
-  setInterval(()=>{
-    let d=target-Date.now();
-    let days=Math.floor(d/86400000);
-    let hrs=Math.floor((d/3600000)%24);
-    let mins=Math.floor((d/60000)%60);
-    let secs=Math.floor((d/1000)%60);
-    document.getElementById("countdown").innerHTML=
-      `💝 ${days}d ${hrs}h ${mins}m ${secs}s`;
-  },1000);
-}
-startCountdown();
+(function(){
+  const el=document.getElementById("countdown");
+  function tick(){
+    let y=new Date().getFullYear();
+    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
+    if(Date.now()>t) t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
+    let d=t-Date.now();
+    el.innerHTML=`💝 ${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s`;
+  }
+  tick();setInterval(tick,1000);
+})();
 
 /* PROMO */
+const promo=document.getElementById("promo");
+const promoBox=document.getElementById("promo-box");
+const promoClose=document.getElementById("promo-close");
+
 setTimeout(()=>{
-  if(localStorage.getItem("promoShown")!==new Date().toDateString()){
-    document.getElementById("promo").style.display="flex";
+  if(localStorage.getItem("promoUsed")!==new Date().toDateString()){
+    promo.style.display="flex";
+    setTimeout(()=>promoClose.style.display="block",5000);
   }
-},8000);
+},10000);
 
 function closePromo(){
-  localStorage.setItem("promoShown",new Date().toDateString());
-  document.getElementById("promo").style.display="none";
+  promo.style.display="none";
 }
 
-/* RANDOM CODE */
-function genCode(){
-  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
-  let code="";
-  for(let i=0;i<6;i++)
-    code+=chars[Math.floor(Math.random()*chars.length)];
-  return code;
-}
 function tryLuck(){
-  localStorage.setItem("promoShown", new Date().toDateString());
+  localStorage.setItem("promoUsed",new Date().toDateString());
+  let win=Math.random()<0.05;
 
-  let roll = Math.floor(Math.random() * 10000);
-  let discount = 0;
-
-  if (roll < 9850) discount = 0;
-  else if (roll < 9990) discount = 10;
-  else if (roll < 9999) discount = 15;
-  else discount = 20;
-
-  const box = document.getElementById("promoBox");
-
-  if(discount === 0){
-    box.innerHTML = `
-      <h3>😔 No luck today</h3>
-      <p>Try again tomorrow 💗</p>
-      <button class="view-btn" onclick="closePromo()">Close</button>
+  if(win){
+    promoBox.innerHTML=`
+      <h3>🎉 Congratulations!</h3>
+      <p>You won a discount!</p>
+      <p>Applies to selected product</p>
+      <p>📸 Screenshot & send to us</p>
+      <span id="promo-close" onclick="closePromo()">✕</span>
     `;
-    return;
+  }else{
+    promoBox.innerHTML=`
+      <h3>😔 Better luck next time</h3>
+      <p>Try again tomorrow 💕</p>
+      <span id="promo-close" onclick="closePromo()">✕</span>
+    `;
   }
-
-  let code = genCode();
-  let product = pickProduct();
-  let date = new Date().toLocaleString();
-
-  box.innerHTML = `
-    <button id="closeX"
-      style="display:none;position:absolute;top:10px;right:15px;
-      border:none;background:none;font-size:22px;cursor:pointer;">✖</button>
-
-    <h3>🎉 CONGRATULATIONS!</h3>
-    <h2>${discount}% OFF</h2>
-
-    <p>
-      ✅ <b>Valid for:</b><br>
-      <span style="color:#ff4d6d;font-weight:bold;">
-        ${product}
-      </span>
-    </p>
-
-    <p>Code: <b>${code}</b></p>
-    <p>${date}</p>
-
-    <p style="font-size:13px;color:#777;">
-      📌 Valid for this product only<br>
-      📸 Screenshot & send to us
-    </p>
-
-    <a class="view-btn" href="https://m.me/61579128398313" target="_blank">
-      Message now
-    </a>
-  `;
-
-  setTimeout(()=>{
-    document.getElementById("closeX").style.display="block";
-    document.getElementById("closeX").onclick = closePromo;
-  },5000);
-}
-
-  let code=genCode();
-  let date=new Date().toLocaleString();
-
-  box.innerHTML=`
-    <button id="closeX"
-            style="display:none;position:absolute;top:10px;right:15px;
-                   border:none;background:none;font-size:22px;cursor:pointer;">✖</button>
-    <h3>🎉 Congratulations!</h3>
-    <h2>${discount}% OFF</h2>
-    <p>Code: <b>${code}</b></p>
-    <p>${date}</p>
-    <p>📸 Screenshot & send to us</p>
-    <a class="view-btn" href="https://m.me/61579128398313" target="_blank">
-      Message now
-    </a>`;
-
-  // show X after 5 seconds
-  setTimeout(()=>{
-    document.getElementById("closeX").style.display="block";
-    document.getElementById("closeX").onclick=closePromo;
-  },5000);
 }
 </script>
 
