@@ -2,28 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Print & Craft Collective 💗</title>
+<title>Print and Craft Collective 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(180deg,#fff0f5,#ffffff);
   color:#5a2a3a;
 }
+
+/* HEADER */
 header{
   background:linear-gradient(135deg,#ff4d6d,#ff8fab);
   color:#fff;
   text-align:center;
   padding:40px 20px;
 }
+
+/* PRODUCTS GRID */
 section{padding:40px 20px;}
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:25px;
 }
+
+/* PRODUCT CARD */
 .product-card{
   background:#fff;
   border-radius:22px;
@@ -31,17 +39,20 @@ section{padding:40px 20px;}
   box-shadow:0 12px 30px rgba(255,120,150,.25);
   text-align:center;
 }
+
 .product-card img.main-img{
   width:100%;
   border-radius:18px;
 }
+
 .price{
-  margin:6px 0;
+  margin-top:6px;
   font-weight:bold;
   color:#d6336c;
 }
+
 .view-btn{
-  margin-top:10px;
+  margin-top:14px;
   padding:12px 26px;
   border-radius:30px;
   border:none;
@@ -52,13 +63,19 @@ section{padding:40px 20px;}
 }
 
 /* SLIDER */
-.designs{display:none;margin-top:15px;position:relative;}
+.designs{
+  display:none;
+  margin-top:15px;
+  position:relative;
+}
+
 .design-track{
   display:flex;
   gap:10px;
   overflow-x:auto;
   scroll-behavior:smooth;
 }
+
 .design-track img{
   width:120px;
   height:170px;
@@ -66,6 +83,8 @@ section{padding:40px 20px;}
   border-radius:14px;
   cursor:pointer;
 }
+
+/* ARROWS */
 .arrow{
   position:absolute;
   top:40%;
@@ -90,44 +109,38 @@ section{padding:40px 20px;}
   align-items:center;
   z-index:9999;
 }
+
 .lightbox img{
   max-width:90%;
   max-height:90%;
 }
-.lb-arrow{
-  position:absolute;
-  top:50%;
-  font-size:40px;
-  color:#fff;
-  cursor:pointer;
-}
-.lb-arrow.left{left:15px;}
-.lb-arrow.right{right:15px;}
 
-/* FLOATING */
-.floating{
+/* FLOATING ORDER */
+.floating-order{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#ff4d6d;
   color:#fff;
-  padding:14px 22px;
-  border-radius:30px;
+  padding:14px 24px;
+  border-radius:40px;
   font-weight:bold;
   text-decoration:none;
-  z-index:10000;
+  z-index:9999;
 }
-.timer{
+
+/* COUNTDOWN */
+.countdown{
   position:fixed;
-  bottom:70px;
+  bottom:80px;
   right:20px;
   background:#fff;
   color:#ff4d6d;
-  padding:10px 16px;
+  padding:12px 20px;
   border-radius:30px;
   font-weight:bold;
-  box-shadow:0 10px 25px rgba(255,77,109,.35);
-  z-index:10000;
+  box-shadow:0 10px 25px rgba(255,77,109,.3);
+  z-index:9999;
 }
 
 /* PROMO */
@@ -136,43 +149,24 @@ section{padding:40px 20px;}
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.6);
-  z-index:12000;
   justify-content:center;
   align-items:center;
+  z-index:10000;
 }
+
 .promo-box{
   background:#fff;
-  border-radius:20px;
-  padding:25px;
+  padding:28px;
+  border-radius:22px;
   max-width:320px;
   text-align:center;
-  position:relative;
-}
-.close-x{
-  position:absolute;
-  top:10px;
-  right:12px;
-  font-size:18px;
-  cursor:pointer;
-  display:none;
 }
 
 footer{
   text-align:center;
-  padding:30px;
+  padding:20px;
   font-size:13px;
   color:#777;
-}
-.contact a{
-  display:block;
-  margin:8px auto;
-  max-width:280px;
-  padding:12px;
-  border-radius:25px;
-  background:#ff4d6d;
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
 }
 </style>
 </head>
@@ -186,7 +180,7 @@ footer{
 
 <section>
 <div class="products">
-<!-- 💐 Fuzzywire Bouquet -->
+<!-- ================= BOUQUET ================= -->
 <div class="product-card">
   <img src="image/bouquet/Bouquet.jpg" class="main-img">
   <h3>💐 Fuzzywire Bouquet</h3>
@@ -218,7 +212,7 @@ footer{
   </div>
 </div>
 
-<!-- 🖤 Polaroid Prints -->
+<!-- ================= POLAROID ================= -->
 <div class="product-card">
   <img src="image/polaroid/Polaroid.jpg" class="main-img">
   <h3>🖤 Polaroid Prints</h3>
@@ -245,7 +239,7 @@ footer{
   </div>
 </div>
 
-<!-- 🎁 Polaroid Box Set -->
+<!-- ================= BOX SET ================= -->
 <div class="product-card">
   <img src="image/box-set/Box set.jpg" class="main-img">
   <h3>🎁 Polaroid Box Set</h3>
@@ -275,7 +269,7 @@ footer{
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
-<!-- 💖 Bracelet -->
+<!-- ================= BRACELET ================= -->
 <div class="product-card">
   <img src="image/bracelet/Bracelet.jpg" class="main-img">
   <h3>💖 Bracelet</h3>
@@ -295,7 +289,7 @@ footer{
   </div>
 </div>
 
-<!-- 🖼️ Photo Frame -->
+<!-- ================= PHOTO FRAME ================= -->
 <div class="product-card">
   <img src="image/frame/Frame.jpg" class="main-img">
   <h3>🖼️ Photo Frame</h3>
@@ -311,7 +305,7 @@ footer{
   </div>
 </div>
 
-<!-- 🔑 Keychain -->
+<!-- ================= KEYCHAIN ================= -->
 <div class="product-card">
   <img src="image/keychain/Keychain.jpg" class="main-img">
   <h3>🔑 Keychain</h3>
@@ -339,7 +333,7 @@ footer{
   </div>
 </div>
 
-<!-- 📸 Photostrips -->
+<!-- ================= PHOTOSTRIPS ================= -->
 <div class="product-card">
   <img src="image/photostrips/PhotoStrips.jpg" class="main-img">
   <h3>📸 Photostrips</h3>
@@ -353,95 +347,260 @@ footer{
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
+<!-- ================= FLOATING ORDER + COUNTDOWN ================= -->
+<div id="countdown-float">💝 Loading…</div>
 
-</div>
-</section>
-
-<!-- 💬 FLOATING ORDER -->
-<a class="floating-order" href="https://m.me/61579128398313" target="_blank">
+<a id="order-float" href="https://m.me/61579128398313" target="_blank">
   💬 Order Now
 </a>
 
-<!-- ⏰ COUNTDOWN -->
-<div class="countdown" id="countdown">⏰ Loading…</div>
+<style>
+#order-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff4d6d;
+  color:#fff;
+  padding:16px 26px;
+  border-radius:40px;
+  font-weight:bold;
+  text-decoration:none;
+  z-index:9999;
+  box-shadow:0 10px 25px rgba(255,77,109,.5);
+}
+#countdown-float{
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  background:#fff;
+  color:#ff4d6d;
+  padding:12px 20px;
+  border-radius:30px;
+  font-weight:bold;
+  z-index:9999;
+  box-shadow:0 10px 25px rgba(255,77,109,.35);
+}
+</style>
 
-<!-- 🔍 LIGHTBOX -->
+<script>
+/* ================= COUNTDOWN ================= */
+(function(){
+  const el=document.getElementById("countdown-float");
+  function update(){
+    let y=new Date().getFullYear();
+    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
+    if(Date.now()>t) t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
+    let d=t-Date.now();
+    let days=Math.floor(d/86400000);
+    let hrs=Math.floor((d/3600000)%24);
+    let mins=Math.floor((d/60000)%60);
+    let secs=Math.floor((d/1000)%60);
+    el.innerHTML=`💝 ${days}d ${hrs}h ${mins}m ${secs}s`;
+  }
+  update();
+  setInterval(update,1000);
+})();
+</script>
+
+<!-- ================= LIGHTBOX WITH ARROWS ================= -->
 <div class="lightbox" id="lightbox">
-  <button class="arrow left" onclick="prevZoom()">‹</button>
+  <button class="arrow left" onclick="zoomPrev()">‹</button>
   <img id="zoomed">
-  <button class="arrow right" onclick="nextZoom()">›</button>
-</div>
-
-<!-- 🎁 PROMO POPUP -->
-<div class="promo" id="promo">
-  <div class="promo-box" id="promoBox">
-    <h3>🎁 Valentine Promo</h3>
-    <p>Try your luck 💖</p>
-    <button onclick="tryLuck()" class="view-btn">TRY MY LUCK</button>
-  </div>
+  <button class="arrow right" onclick="zoomNext()">›</button>
 </div>
 
 <script>
-/* TOGGLE */
-function toggle(id){
-  const el=document.getElementById(id);
-  el.style.display=el.style.display==="block"?"none":"block";
-}
+let zoomImages=[], zoomIndex=0;
 
-/* SLIDE */
-function slide(btn,dir){
-  btn.parentElement.querySelector(".design-track").scrollLeft+=dir*160;
-}
-
-/* ZOOM */
-let zoomImgs=[],zoomIndex=0;
 function zoom(img){
-  zoomImgs=[...img.parentElement.children].filter(i=>i.tagName==="IMG");
-  zoomIndex=zoomImgs.indexOf(img);
+  zoomImages=[...img.parentElement.querySelectorAll("img")];
+  zoomIndex=zoomImages.indexOf(img);
   document.getElementById("zoomed").src=img.src;
   document.getElementById("lightbox").style.display="flex";
-  history.pushState({},"");
-}
-function closeZoom(){document.getElementById("lightbox").style.display="none";}
-function nextZoom(){zoomIndex=(zoomIndex+1)%zoomImgs.length;zoomed.src=zoomImgs[zoomIndex].src;}
-function prevZoom(){zoomIndex=(zoomIndex-1+zoomImgs.length)%zoomImgs.length;zoomed.src=zoomImgs[zoomIndex].src;}
-document.getElementById("lightbox").addEventListener("click",e=>{if(e.target.id==="lightbox")closeZoom();});
-window.addEventListener("popstate",closeZoom);
-
-/* COUNTDOWN */
-function countdown(){
-  let t=new Date(`Feb 14, ${new Date().getFullYear()}`).getTime();
-  if(Date.now()>t)t=new Date(`Feb 14, ${new Date().getFullYear()+1}`).getTime();
-  setInterval(()=>{
-    let d=t-Date.now();
-    document.getElementById("countdown").innerHTML=
-      `💝 ${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s`;
-  },1000);
-}
-countdown();
-
-/* PROMO LOGIC */
-setTimeout(()=>{
-  if(localStorage.getItem("promoDate")!==new Date().toDateString()){
-    document.getElementById("promo").style.display="flex";
-  }
-},8000);
-
-function tryLuck(){
-  localStorage.setItem("promoDate",new Date().toDateString());
-  const roll=Math.random()*100;
-  let result="😔 Better luck next time";
-  if(roll<0.5) result="💐 20% OFF – Fuzzywire Bouquet";
-  else if(roll<5) result="🎁 15% OFF – Any Product";
-  else if(roll<50) result="🖤 10% OFF – Polaroid Prints";
-  document.getElementById("promoBox").innerHTML=
-    `<h3>${result}</h3>
-     <p>📸 Screenshot & message us</p>
-     <a href="https://m.me/61579128398313" class="view-btn">Message Now</a>`;
+  history.pushState({zoom:true},"");
 }
 
-/* CLOSE PROMO */
-document.getElementById("promo").addEventListener("click",e=>{
-  if(e.target.id==="promo")e.currentTarget.style.display="none";
+function zoomNext(){
+  zoomIndex=(zoomIndex+1)%zoomImages.length;
+  document.getElementById("zoomed").src=zoomImages[zoomIndex].src;
+}
+function zoomPrev(){
+  zoomIndex=(zoomIndex-1+zoomImages.length)%zoomImages.length;
+  document.getElementById("zoomed").src=zoomImages[zoomIndex].src;
+}
+
+document.getElementById("lightbox").addEventListener("click",e=>{
+  if(e.target.id==="lightbox") closeZoom();
+});
+function closeZoom(){
+  document.getElementById("lightbox").style.display="none";
+}
+window.addEventListener("popstate",()=>closeZoom());
+
+/* SWIPE */
+let sx=0;
+document.getElementById("lightbox").addEventListener("touchstart",e=>sx=e.touches[0].clientX);
+document.getElementById("lightbox").addEventListener("touchend",e=>{
+  let ex=e.changedTouches[0].clientX;
+  if(ex<sx-50) zoomNext();
+  if(ex>sx+50) zoomPrev();
 });
 </script>
+
+<!-- ================= PROMO POPUP ================= -->
+<div id="promo-overlay">
+  <div id="promo-box">
+    <h3>🎁 Valentine Promo</h3>
+    <p>You have ONE chance today 💕</p>
+    <button onclick="tryLuck()">TRY MY LUCK</button>
+    <span id="promo-close">✕</span>
+  </div>
+</div>
+
+<style>
+#promo-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:99999;
+  align-items:center;
+  justify-content:center;
+}
+#promo-box{
+  background:#fff;
+  padding:28px;
+  border-radius:22px;
+  text-align:center;
+  max-width:320px;
+  position:relative;
+}
+#promo-box button{
+  margin-top:12px;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+#promo-close{
+  display:none;
+  position:absolute;
+  top:10px;
+  right:14px;
+  cursor:pointer;
+}
+</style>
+
+<script>
+/* SHOW PROMO AFTER 10s */
+setTimeout(()=>{
+  if(localStorage.getItem("promoUsed")!==new Date().toDateString()){
+    document.getElementById("promo-overlay").style.display="flex";
+    setTimeout(()=>document.getElementById("promo-close").style.display="block",5000);
+  }
+},10000);
+
+document.getElementById("promo-close").onclick=()=>{
+  document.getElementById("promo-overlay").style.display="none";
+};
+
+function randomCode(){
+  return Math.random().toString(36).substring(2,8).toUpperCase();
+}
+
+function tryLuck(){
+  localStorage.setItem("promoUsed",new Date().toDateString());
+
+  let r=Math.random()*100;
+  let prize="No luck 😔";
+  let product="";
+  let percent=0;
+
+  if(r<0.5){ percent=20; product="Fuzzywire Bouquet"; }
+  else if(r<2){ percent=15; product="Photo Products"; }
+  else if(r<25){ percent=10; product="Polaroid Prints"; }
+
+  const box=document.getElementById("promo-box");
+
+  if(percent===0){
+    box.innerHTML=`<h3>😔 Better luck next time</h3>`;
+    return;
+  }
+
+  let code=randomCode();
+  let now=new Date().toLocaleString();
+
+  box.innerHTML=`
+    <h3>🎉 Congratulations!</h3>
+    <h2>${percent}% OFF</h2>
+    <p><b>Product:</b> ${product}</p>
+    <p><b>Code:</b> ${code}</p>
+    <p><b>Date:</b> ${now}</p>
+    <p>📸 Screenshot & send to us</p>
+    <a href="https://m.me/61579128398313" target="_blank">
+      <button>Message Now</button>
+    </a>
+  `;
+}
+</script>
+<!-- ================= ORDER NOW SECTION (BOTTOM) ================= -->
+<section style="background:#fff0f5;padding:50px 20px;text-align:center;">
+  <h2 style="color:#d6336c;font-size:32px;">❤️ Order Now ❤️</h2>
+  <p style="margin-bottom:25px;">Message us to place your order or ask questions 💬</p>
+
+  <a href="https://m.me/61579128398313" target="_blank"
+     style="display:block;margin:12px auto;padding:14px 26px;
+     max-width:320px;border-radius:30px;
+     background:#ff4d6d;color:#fff;
+     font-weight:bold;text-decoration:none;">
+    💬 Message on Messenger
+  </a>
+
+  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank"
+     style="display:block;margin:12px auto;padding:14px 26px;
+     max-width:320px;border-radius:30px;
+     background:#ffffff;color:#ff4d6d;
+     font-weight:bold;text-decoration:none;
+     border:2px solid #ff4d6d;">
+    👤 Visit Facebook Account
+  </a>
+
+  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank"
+     style="display:block;margin:12px auto;padding:14px 26px;
+     max-width:320px;border-radius:30px;
+     background:#ffffff;color:#ff4d6d;
+     font-weight:bold;text-decoration:none;
+     border:2px solid #ff4d6d;">
+    📘 Visit Facebook Page
+  </a>
+
+  <a href="https://www.facebook.com/share/p/14W7WzKb7QJ/" target="_blank"
+     style="display:block;margin:12px auto;padding:14px 26px;
+     max-width:320px;border-radius:30px;
+     background:#ffe6ee;color:#d6336c;
+     font-weight:bold;text-decoration:none;">
+    ⭐ Leave Us a Feedback
+  </a>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer style="text-align:center;padding:25px;font-size:13px;color:#777;">
+  © 2026 Print & Craft Collective • Handmade with 💗 • Student-friendly
+</footer>
+
+<!-- ================= FINAL SAFETY CLOSE ================= -->
+<script>
+/* Prevent promo reopening same day */
+window.addEventListener("load",()=>{
+  if(localStorage.getItem("promoUsed")===new Date().toDateString()){
+    const p=document.getElementById("promo-overlay");
+    if(p) p.style.display="none";
+  }
+});
+</script>
+
+</body>
+</html>
