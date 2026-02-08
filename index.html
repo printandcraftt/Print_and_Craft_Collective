@@ -372,6 +372,22 @@ section{
 </div>
 
 <script>
+
+<script>
+
+/* PROMO PRODUCTS (NO BOUQUET) */
+const promoProducts = [
+  "Polaroid Prints",
+  "Polaroid Box Set",
+  "Bracelet",
+  "Photo Frame",
+  "Keychain",
+  "Photostrips"
+];
+
+function pickProduct(){
+  return promoProducts[Math.floor(Math.random() * promoProducts.length)];
+}
 /* TOGGLE DESIGNS */
 function toggle(id){
   const el=document.getElementById(id);
@@ -450,25 +466,65 @@ function genCode(){
     code+=chars[Math.floor(Math.random()*chars.length)];
   return code;
 }
-
-/* TRY LUCK */
 function tryLuck(){
-  localStorage.setItem("promoShown",new Date().toDateString());
-  let roll=Math.random()*100;
-  let discount=0;
-  if(roll<70) discount=0;
-  else if(roll<90) discount=10;
-  else if(roll<98) discount=15;
-  else discount=20;
+  localStorage.setItem("promoShown", new Date().toDateString());
 
-  const box=document.getElementById("promoBox");
+  let roll = Math.floor(Math.random() * 10000);
+  let discount = 0;
 
-  if(discount===0){
-    box.innerHTML=`
-      <h3>😔 Better luck next time</h3>
-      <button class="view-btn" onclick="closePromo()">Close</button>`;
+  if (roll < 9850) discount = 0;
+  else if (roll < 9990) discount = 10;
+  else if (roll < 9999) discount = 15;
+  else discount = 20;
+
+  const box = document.getElementById("promoBox");
+
+  if(discount === 0){
+    box.innerHTML = `
+      <h3>😔 No luck today</h3>
+      <p>Try again tomorrow 💗</p>
+      <button class="view-btn" onclick="closePromo()">Close</button>
+    `;
     return;
   }
+
+  let code = genCode();
+  let product = pickProduct();
+  let date = new Date().toLocaleString();
+
+  box.innerHTML = `
+    <button id="closeX"
+      style="display:none;position:absolute;top:10px;right:15px;
+      border:none;background:none;font-size:22px;cursor:pointer;">✖</button>
+
+    <h3>🎉 CONGRATULATIONS!</h3>
+    <h2>${discount}% OFF</h2>
+
+    <p>
+      ✅ <b>Valid for:</b><br>
+      <span style="color:#ff4d6d;font-weight:bold;">
+        ${product}
+      </span>
+    </p>
+
+    <p>Code: <b>${code}</b></p>
+    <p>${date}</p>
+
+    <p style="font-size:13px;color:#777;">
+      📌 Valid for this product only<br>
+      📸 Screenshot & send to us
+    </p>
+
+    <a class="view-btn" href="https://m.me/61579128398313" target="_blank">
+      Message now
+    </a>
+  `;
+
+  setTimeout(()=>{
+    document.getElementById("closeX").style.display="block";
+    document.getElementById("closeX").onclick = closePromo;
+  },5000);
+}
 
   let code=genCode();
   let date=new Date().toLocaleString();
