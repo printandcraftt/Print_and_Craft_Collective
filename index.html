@@ -2,36 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Print and Craft Collective 💗</title>
+<title>Print and Craft💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(180deg,#fff0f5,#ffffff);
   color:#5a2a3a;
 }
-
-/* HEADER */
 header{
   background:linear-gradient(135deg,#ff4d6d,#ff8fab);
   color:#fff;
   text-align:center;
   padding:40px 20px;
 }
-
-/* PRODUCTS GRID */
-section{padding:40px 20px;}
+section{
+  padding:40px 20px;
+}
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:25px;
 }
-
-/* PRODUCT CARD */
 .product-card{
   background:#fff;
   border-radius:22px;
@@ -39,18 +33,15 @@ section{padding:40px 20px;}
   box-shadow:0 12px 30px rgba(255,120,150,.25);
   text-align:center;
 }
-
 .product-card img.main-img{
   width:100%;
   border-radius:18px;
 }
-
 .price{
   margin-top:6px;
   font-weight:bold;
   color:#d6336c;
 }
-
 .view-btn{
   margin-top:14px;
   padding:12px 26px;
@@ -81,8 +72,6 @@ section{padding:40px 20px;}
   border-radius:14px;
   cursor:pointer;
 }
-
-/* ARROWS */
 .arrow{
   position:absolute;
   top:40%;
@@ -93,12 +82,11 @@ section{padding:40px 20px;}
   padding:6px 12px;
   border-radius:50%;
   cursor:pointer;
-  z-index:5;
 }
-.arrow.left{left:-10px;}
-.arrow.right{right:-10px;}
+.arrow.left{left:-12px;}
+.arrow.right{right:-12px;}
 
-/* LIGHTBOX */
+/* ZOOM */
 .lightbox{
   display:none;
   position:fixed;
@@ -112,71 +100,42 @@ section{padding:40px 20px;}
   max-width:90%;
   max-height:90%;
 }
+.lb-arrow{
+  position:absolute;
+  top:50%;
+  font-size:40px;
+  color:#fff;
+  cursor:pointer;
+}
+.lb-left{left:20px;}
+.lb-right{right:20px;}
 
-/* FLOATING ORDER */
-#order-float{
+/* FLOATING */
+.floating-wrap{
   position:fixed;
   bottom:20px;
   right:20px;
+  z-index:10000;
+  text-align:center;
+}
+.countdown{
+  background:#fff;
+  color:#ff4d6d;
+  padding:10px 16px;
+  border-radius:30px;
+  font-weight:bold;
+  box-shadow:0 6px 18px rgba(255,77,109,.35);
+  margin-bottom:10px;
+  font-size:13px;
+}
+.floating-btn{
+  display:block;
   background:#ff4d6d;
   color:#fff;
   padding:16px 26px;
-  border-radius:40px;
+  border-radius:35px;
   font-weight:bold;
   text-decoration:none;
-  z-index:10000;
-  box-shadow:0 10px 25px rgba(255,77,109,.5);
-}
-
-/* COUNTDOWN */
-#countdown-float{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  background:#fff;
-  color:#ff4d6d;
-  padding:12px 20px;
-  border-radius:30px;
-  font-weight:bold;
-  z-index:10000;
-  box-shadow:0 10px 25px rgba(255,77,109,.35);
-}
-
-/* PROMO */
-#promo-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:10001;
-  align-items:center;
-  justify-content:center;
-}
-#promo-box{
-  background:#fff;
-  padding:28px;
-  border-radius:22px;
-  text-align:center;
-  max-width:340px;
-  position:relative;
-}
-#promo-box button{
-  margin-top:12px;
-  padding:12px 24px;
-  border:none;
-  border-radius:30px;
-  background:#ff4d6d;
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-}
-#promo-close{
-  display:none;
-  position:absolute;
-  top:10px;
-  right:14px;
-  cursor:pointer;
-  font-size:18px;
 }
 </style>
 </head>
@@ -184,13 +143,12 @@ section{padding:40px 20px;}
 <body>
 
 <header>
-  <h1>💖 Print & Craft Collective 💖</h1>
+  <h1>💖 Print & Craft 💖</h1>
   <p>Valentine gifts made with love</p>
 </header>
 
 <section>
-<div class="products">
-
+  <div class="products">
 <!-- BOUQUET -->
 <div class="product-card">
   <img src="image/bouquet/Bouquet.jpg" class="main-img">
@@ -250,7 +208,7 @@ section{padding:40px 20px;}
   </div>
 </div>
 
-  <!-- ================= BOX SET ================= -->
+<!-- POLAROID BOX SET -->
 <div class="product-card">
   <img src="image/box-set/Box set.jpg" class="main-img">
   <h3>🎁 Polaroid Box Set</h3>
@@ -280,7 +238,8 @@ section{padding:40px 20px;}
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
-<!-- ================= BRACELET ================= -->
+
+<!-- BRACELET -->
 <div class="product-card">
   <img src="image/bracelet/Bracelet.jpg" class="main-img">
   <h3>💖 Bracelet</h3>
@@ -300,7 +259,7 @@ section{padding:40px 20px;}
   </div>
 </div>
 
-<!-- ================= PHOTO FRAME ================= -->
+<!-- PHOTO FRAME -->
 <div class="product-card">
   <img src="image/frame/Frame.jpg" class="main-img">
   <h3>🖼️ Photo Frame</h3>
@@ -316,7 +275,7 @@ section{padding:40px 20px;}
   </div>
 </div>
 
-<!-- ================= KEYCHAIN ================= -->
+<!-- KEYCHAIN -->
 <div class="product-card">
   <img src="image/keychain/Keychain.jpg" class="main-img">
   <h3>🔑 Keychain</h3>
@@ -344,7 +303,7 @@ section{padding:40px 20px;}
   </div>
 </div>
 
-<!-- ================= PHOTOSTRIPS ================= -->
+<!-- PHOTOSTRIPS -->
 <div class="product-card">
   <img src="image/photostrips/PhotoStrips.jpg" class="main-img">
   <h3>📸 Photostrips</h3>
@@ -358,102 +317,182 @@ section{padding:40px 20px;}
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
-
-</div>
+   </div> <!-- end products -->
 </section>
 
-<!-- FLOATING -->
-<div id="countdown-float">💝 Loading…</div>
-<a id="order-float" href="https://m.me/61579128398313" target="_blank">💬 Order Now</a>
+<!-- CONTACT / ORDER NOW SECTION -->
+<section style="text-align:center;padding:40px 20px;background:#fff0f5;">
+  <h2 style="color:#d6336c;">💖 Order Now 💖</h2>
 
-<!-- PROMO -->
-<div id="promo-overlay">
-  <div id="promo-box">
+  <a href="https://m.me/61579128398313" target="_blank"
+     style="display:block;margin:12px auto;max-width:300px;"
+     class="floating-btn">💬 Message on Messenger</a>
+
+  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank"
+     style="display:block;margin:12px auto;max-width:300px;"
+     class="floating-btn">👤 Facebook Account</a>
+
+  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank"
+     style="display:block;margin:12px auto;max-width:300px;"
+     class="floating-btn">📘 Facebook Page</a>
+</section>
+
+<footer>
+  © 2026 Print & Craft Collective • Student-friendly 💗
+</footer>
+
+<!-- FLOATING ORDER + COUNTDOWN -->
+<div class="floating-wrap">
+  <div class="countdown" id="countdown">⏳ Loading…</div>
+  <a class="floating-btn" href="https://m.me/61579128398313" target="_blank">
+    💬 Order Now
+  </a>
+</div>
+
+<!-- IMAGE ZOOM -->
+<div class="lightbox" id="lightbox">
+  <span class="lb-arrow lb-left" onclick="prevImg()">‹</span>
+  <img id="zoomed">
+  <span class="lb-arrow lb-right" onclick="nextImg()">›</span>
+</div>
+
+<!-- PROMO POPUP -->
+<div class="lightbox" id="promo" style="background:rgba(0,0,0,.6);">
+  <div id="promoBox"
+       style="background:#fff;padding:25px;border-radius:20px;
+              text-align:center;max-width:320px;position:relative;">
     <h3>🎁 Valentine Promo</h3>
-    <p>You have ONE chance today 💕</p>
-    <button onclick="tryLuck()">TRY MY LUCK</button>
-    <span id="promo-close">✕</span>
+    <p>Try your luck to win a discount 💗</p>
+    <button class="view-btn" onclick="tryLuck()">TRY MY LUCK</button>
+    <br><br>
+    <button class="view-btn"
+            style="background:#ffd6e0;color:#ff4d6d"
+            onclick="closePromo()">Maybe later</button>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="arrow left" onclick="zoomPrev()">‹</button>
-  <img id="zoomed">
-  <button class="arrow right" onclick="zoomNext()">›</button>
-</div>
-
 <script>
-/* TOGGLE */
+/* TOGGLE DESIGNS */
 function toggle(id){
-  const box=document.getElementById(id);
-  box.style.display=box.style.display==="block"?"none":"block";
+  const el=document.getElementById(id);
+  el.style.display = el.style.display==="block" ? "none" : "block";
 }
 
-/* SLIDE */
+/* SLIDER */
 function slide(btn,dir){
-  btn.parentElement.querySelector(".design-track")
-    .scrollBy({left:dir*160,behavior:"smooth"});
+  btn.parentElement.querySelector(".design-track").scrollLeft += dir*150;
 }
+
+/* IMAGE ZOOM */
+let zoomImgs=[], zoomIndex=0;
+const lightbox=document.getElementById("lightbox");
+const zoomed=document.getElementById("zoomed");
+
+function zoom(img){
+  zoomImgs=[...img.parentElement.querySelectorAll("img")];
+  zoomIndex=zoomImgs.indexOf(img);
+  zoomed.src=img.src;
+  lightbox.style.display="flex";
+  history.pushState({zoom:true},"");
+}
+function closeZoom(){ lightbox.style.display="none"; }
+function nextImg(){
+  zoomIndex=(zoomIndex+1)%zoomImgs.length;
+  zoomed.src=zoomImgs[zoomIndex].src;
+}
+function prevImg(){
+  zoomIndex=(zoomIndex-1+zoomImgs.length)%zoomImgs.length;
+  zoomed.src=zoomImgs[zoomIndex].src;
+}
+lightbox.addEventListener("click",e=>{
+  if(e.target===lightbox) closeZoom();
+});
+window.addEventListener("popstate",()=>{
+  if(lightbox.style.display==="flex") closeZoom();
+});
 
 /* COUNTDOWN */
-(function(){
-  const el=document.getElementById("countdown-float");
-  setInterval(()=>{
-    let y=new Date().getFullYear();
-    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
-    if(Date.now()>t) t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
-    let d=t-Date.now();
-    el.innerHTML=`💝 ${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s`;
-  },1000);
-})();
+function startCountdown(){
+  let year=new Date().getFullYear();
+  let target=new Date(`February 14, ${year} 00:00:00`).getTime();
+  if(Date.now()>target)
+    target=new Date(`February 14, ${year+1} 00:00:00`).getTime();
 
-/* ZOOM */
-let zoomImages=[],zoomIndex=0;
-function zoom(img){
-  zoomImages=[...img.parentElement.querySelectorAll("img")];
-  zoomIndex=zoomImages.indexOf(img);
-  document.getElementById("zoomed").src=img.src;
-  document.getElementById("lightbox").style.display="flex";
+  setInterval(()=>{
+    let d=target-Date.now();
+    let days=Math.floor(d/86400000);
+    let hrs=Math.floor((d/3600000)%24);
+    let mins=Math.floor((d/60000)%60);
+    let secs=Math.floor((d/1000)%60);
+    document.getElementById("countdown").innerHTML=
+      `💝 ${days}d ${hrs}h ${mins}m ${secs}s`;
+  },1000);
 }
-function zoomNext(){zoomIndex=(zoomIndex+1)%zoomImages.length;document.getElementById("zoomed").src=zoomImages[zoomIndex].src;}
-function zoomPrev(){zoomIndex=(zoomIndex-1+zoomImages.length)%zoomImages.length;document.getElementById("zoomed").src=zoomImages[zoomIndex].src;}
-document.getElementById("lightbox").onclick=e=>{if(e.target.id==="lightbox")e.target.style.display="none";}
+startCountdown();
 
 /* PROMO */
 setTimeout(()=>{
-  if(localStorage.getItem("promoUsed")!==new Date().toDateString()){
-    document.getElementById("promo-overlay").style.display="flex";
-    setTimeout(()=>document.getElementById("promo-close").style.display="block",5000);
+  if(localStorage.getItem("promoShown")!==new Date().toDateString()){
+    document.getElementById("promo").style.display="flex";
   }
-},10000);
+},8000);
 
-document.getElementById("promo-close").onclick=()=>document.getElementById("promo-overlay").style.display="none";
+function closePromo(){
+  localStorage.setItem("promoShown",new Date().toDateString());
+  document.getElementById("promo").style.display="none";
+}
 
-function randomCode(){return Math.random().toString(36).substring(2,8).toUpperCase();}
+/* RANDOM CODE */
+function genCode(){
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
+  let code="";
+  for(let i=0;i<6;i++)
+    code+=chars[Math.floor(Math.random()*chars.length)];
+  return code;
+}
 
+/* TRY LUCK */
 function tryLuck(){
-  localStorage.setItem("promoUsed",new Date().toDateString());
-  let r=Math.random()*200; // 1 in 200 for jackpot
-  let percent=0,product="";
-  if(r<1){percent=20;product="Fuzzywire Bouquet";}
-  else if(r<6){percent=15;product="Any Photo Product";}
-  else if(r<60){percent=10;product="Polaroid Prints";}
-  const box=document.getElementById("promo-box");
-  if(percent===0){box.innerHTML="<h3>😔 Better luck next time</h3>";return;}
+  localStorage.setItem("promoShown",new Date().toDateString());
+  let roll=Math.random()*100;
+  let discount=0;
+  if(roll<70) discount=0;
+  else if(roll<90) discount=10;
+  else if(roll<98) discount=15;
+  else discount=20;
+
+  const box=document.getElementById("promoBox");
+
+  if(discount===0){
+    box.innerHTML=`
+      <h3>😔 Better luck next time</h3>
+      <button class="view-btn" onclick="closePromo()">Close</button>`;
+    return;
+  }
+
+  let code=genCode();
+  let date=new Date().toLocaleString();
+
   box.innerHTML=`
+    <button id="closeX"
+            style="display:none;position:absolute;top:10px;right:15px;
+                   border:none;background:none;font-size:22px;cursor:pointer;">✖</button>
     <h3>🎉 Congratulations!</h3>
-    <h2>${percent}% OFF</h2>
-    <p><b>Product:</b> ${product}</p>
-    <p><b>Code:</b> ${randomCode()}</p>
+    <h2>${discount}% OFF</h2>
+    <p>Code: <b>${code}</b></p>
+    <p>${date}</p>
     <p>📸 Screenshot & send to us</p>
-    <a href="https://m.me/61579128398313" target="_blank"><button>Message Now</button></a>`;
+    <a class="view-btn" href="https://m.me/61579128398313" target="_blank">
+      Message now
+    </a>`;
+
+  // show X after 5 seconds
+  setTimeout(()=>{
+    document.getElementById("closeX").style.display="block";
+    document.getElementById("closeX").onclick=closePromo;
+  },5000);
 }
 </script>
-
-<footer style="text-align:center;padding:25px;font-size:13px;color:#777;">
-© 2026 Print & Craft Collective • Handmade with 💗
-</footer>
 
 </body>
 </html>
