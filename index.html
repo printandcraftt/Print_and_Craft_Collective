@@ -7,29 +7,23 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 body{
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(180deg,#fff0f5,#ffffff);
   color:#5a2a3a;
 }
-
-/* HEADER */
 header{
   background:linear-gradient(135deg,#ff4d6d,#ff8fab);
   color:#fff;
   text-align:center;
   padding:40px 20px;
 }
-
-/* PRODUCTS */
 section{padding:40px 20px}
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:25px;
 }
-
 .product-card{
   background:#fff;
   border-radius:22px;
@@ -37,18 +31,15 @@ section{padding:40px 20px}
   box-shadow:0 12px 30px rgba(255,120,150,.25);
   text-align:center;
 }
-
 .product-card img.main-img{
   width:100%;
   border-radius:18px;
 }
-
 .price{
   margin:8px 0;
   font-weight:bold;
   color:#d6336c;
 }
-
 .view-btn{
   padding:12px 26px;
   border-radius:30px;
@@ -58,21 +49,17 @@ section{padding:40px 20px}
   font-weight:bold;
   cursor:pointer;
 }
-
-/* DESIGNS SLIDER */
 .designs{
   display:none;
   margin-top:15px;
   position:relative;
 }
-
 .design-track{
   display:flex;
   gap:10px;
   overflow-x:auto;
   scroll-behavior:smooth;
 }
-
 .design-track img{
   width:120px;
   height:170px;
@@ -80,8 +67,6 @@ section{padding:40px 20px}
   border-radius:14px;
   cursor:pointer;
 }
-
-/* ARROWS */
 .arrow{
   position:absolute;
   top:50%;
@@ -93,7 +78,7 @@ section{padding:40px 20px}
   padding:6px 12px;
   border-radius:50%;
   cursor:pointer;
-  z-index:2;
+  z-index:10;
 }
 .arrow.left{left:-10px}
 .arrow.right{right:-10px}
@@ -108,10 +93,13 @@ section{padding:40px 20px}
   align-items:center;
   z-index:9999;
 }
-
 .lightbox img{
   max-width:90%;
   max-height:90%;
+}
+.lightbox .arrow{
+  position:absolute;
+  top:50%;
 }
 
 /* FLOATING ORDER */
@@ -152,7 +140,6 @@ section{padding:40px 20px}
   justify-content:center;
   align-items:center;
 }
-
 #promo-box{
   background:#fff;
   padding:28px;
@@ -161,7 +148,6 @@ section{padding:40px 20px}
   max-width:320px;
   position:relative;
 }
-
 #promo-box button{
   margin-top:12px;
   padding:12px 24px;
@@ -172,7 +158,6 @@ section{padding:40px 20px}
   font-weight:bold;
   cursor:pointer;
 }
-
 #promo-close{
   display:none;
   position:absolute;
@@ -181,7 +166,6 @@ section{padding:40px 20px}
   cursor:pointer;
 }
 
-/* FOOTER */
 footer{
   text-align:center;
   padding:30px;
@@ -199,192 +183,46 @@ footer{
 </header>
 
 <section>
-  <div class="products">
-<!-- ================= PRODUCTS ================= -->
+<div class="products">
 
-<!-- BOUQUET -->
+<!-- BOUQUET (NO DISCOUNT EVER) -->
 <div class="product-card">
   <img src="image/bouquet/Bouquet.jpg" class="main-img">
   <h3>💐 Fuzzywire Bouquet</h3>
   <div class="price">₱280 – ₱400</div>
   <button class="view-btn" onclick="toggle('bouquet')">View Designs</button>
-
   <div class="designs" id="bouquet">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
       <img src="image/bouquet/Bouquet1.jpg" onclick="zoom(this)">
       <img src="image/bouquet/Bouquet2.jpg" onclick="zoom(this)">
       <img src="image/bouquet/Bouquet3.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet4.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet5.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet6.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet7.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet8.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet9.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet10.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet11.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet12.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet13.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet14.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet15.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet16.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet17.jpg" onclick="zoom(this)">
-      <img src="image/bouquet/Bouquet18.jpg" onclick="zoom(this)">
     </div>
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
 
-<!-- POLAROID PRINTS -->
+<!-- POLAROID -->
 <div class="product-card">
   <img src="image/polaroid/Polaroid.jpg" class="main-img">
   <h3>🖤 Polaroid Prints</h3>
-  <div class="price">Starts at ₱50 (15 pcs)</div>
+  <div class="price">Starts at ₱50</div>
   <button class="view-btn" onclick="toggle('polaroid')">View Designs</button>
-
   <div class="designs" id="polaroid">
     <button class="arrow left" onclick="slide(this,-1)">‹</button>
     <div class="design-track">
       <img src="image/polaroid/Polaroid1.jpg" onclick="zoom(this)">
       <img src="image/polaroid/Polaroid2.jpg" onclick="zoom(this)">
       <img src="image/polaroid/Polaroid3.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid4.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid5.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid6.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid7.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid8.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid9.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid10.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid11.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid12.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid13.jpg" onclick="zoom(this)">
     </div>
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
 
-<!-- POLAROID BOX SET -->
-<div class="product-card">
-  <img src="image/box-set/Box set.jpg" class="main-img">
-  <h3>🎁 Polaroid Box Set</h3>
-  <div class="price">45 pcs — ₱145 (with box)</div>
-  <button class="view-btn" onclick="toggle('boxset')">View Designs</button>
-
-  <div class="designs" id="boxset">
-    <button class="arrow left" onclick="slide(this,-1)">‹</button>
-    <div class="design-track">
-      <img src="image/box-set/Box set1.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set2.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set3.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set4.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set5.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set6.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set7.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set8.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set9.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set10.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set11.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set12.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set13.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set14.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set15.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set16.jpg" onclick="zoom(this)">
-      <img src="image/box-set/Box set17.jpg" onclick="zoom(this)">
-    </div>
-    <button class="arrow right" onclick="slide(this,1)">›</button>
-  </div>
 </div>
-
-<!-- BRACELET -->
-<div class="product-card">
-  <img src="image/bracelet/Bracelet.jpg" class="main-img">
-  <h3>💖 Bracelet</h3>
-  <div class="price">₱35 – ₱99</div>
-  <button class="view-btn" onclick="toggle('bracelet')">View Designs</button>
-
-  <div class="designs" id="bracelet">
-    <button class="arrow left" onclick="slide(this,-1)">‹</button>
-    <div class="design-track">
-      <img src="image/bracelet/Bracelet1.jpg" onclick="zoom(this)">
-      <img src="image/bracelet/Bracelet2.jpg" onclick="zoom(this)">
-      <img src="image/bracelet/Bracelet3.jpg" onclick="zoom(this)">
-      <img src="image/bracelet/Bracelet4.jpg" onclick="zoom(this)">
-      <img src="image/bracelet/Bracelet5.jpg" onclick="zoom(this)">
-      <img src="image/bracelet/Bracelet6.jpg" onclick="zoom(this)">
-    </div>
-    <button class="arrow right" onclick="slide(this,1)">›</button>
-  </div>
-</div>
-
-<!-- PHOTO FRAME -->
-<div class="product-card">
-  <img src="image/frame/Frame.jpg" class="main-img">
-  <h3>🖼️ Photo Frame</h3>
-  <div class="price">₱110</div>
-  <button class="view-btn" onclick="toggle('frame')">View Designs</button>
-
-  <div class="designs" id="frame">
-    <button class="arrow left" onclick="slide(this,-1)">‹</button>
-    <div class="design-track">
-      <img src="image/frame/Frame1.jpg" onclick="zoom(this)">
-      <img src="image/frame/Frame2.jpg" onclick="zoom(this)">
-    </div>
-    <button class="arrow right" onclick="slide(this,1)">›</button>
-  </div>
-</div>
-
-<!-- KEYCHAIN -->
-<div class="product-card">
-  <img src="image/keychain/Keychain.jpg" class="main-img">
-  <h3>🔑 Keychain</h3>
-  <div class="price">₱20 – ₱35</div>
-  <button class="view-btn" onclick="toggle('keychain')">View Designs</button>
-
-  <div class="designs" id="keychain">
-    <button class="arrow left" onclick="slide(this,-1)">‹</button>
-    <div class="design-track">
-      <img src="image/keychain/Keychain1.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain2.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain3.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain4.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain5.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain6.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain7.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain8.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain9.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain10.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain11.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain12.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain13.jpg" onclick="zoom(this)">
-      <img src="image/keychain/Keychain14.jpg" onclick="zoom(this)">
-    </div>
-    <button class="arrow right" onclick="slide(this,1)">›</button>
-  </div>
-</div>
-
-<!-- PHOTOSTRIPS -->
-<div class="product-card">
-  <img src="image/photostrips/PhotoStrips.jpg" class="main-img">
-  <h3>📸 Photostrips</h3>
-  <div class="price">2 pcs — ₱20</div>
-  <button class="view-btn" onclick="toggle('photostrips')">View Designs</button>
-
-  <div class="designs" id="photostrips">
-    <button class="arrow left" onclick="slide(this,-1)">‹</button>
-    <div class="design-track">
-      <img src="image/photostrips/PhotoStrips1.jpg" onclick="zoom(this)">
-    </div>
-    <button class="arrow right" onclick="slide(this,1)">›</button>
-  </div>
-</div>
-
-<!-- ================= END PRODUCTS ================= -->
-
-  </div>
 </section>
 
 <div id="countdown">Loading…</div>
-
 <a id="order-float" href="https://m.me/61579128398313" target="_blank">💬 Order Now</a>
 
 <div class="lightbox" id="lightbox">
@@ -398,7 +236,7 @@ footer{
     <h3>🎁 Valentine Promo</h3>
     <p>You have ONE chance today 💕</p>
     <button onclick="tryLuck()">TRY MY LUCK</button>
-    <span id="promo-close" onclick="closePromo()">✕</span>
+    <span id="promo-close" onclick="promo.style.display='none'">✕</span>
   </div>
 </div>
 
@@ -410,20 +248,16 @@ footer{
 /* TOGGLE */
 function toggle(id){
   const el=document.getElementById(id);
-  if(el) el.style.display=el.style.display==="block"?"none":"block";
+  el.style.display = el.style.display==="block" ? "none" : "block";
 }
 
 /* SLIDE */
 function slide(btn,dir){
-  const track=btn.parentElement.querySelector(".design-track");
-  if(track) track.scrollLeft+=dir*160;
+  btn.parentElement.querySelector(".design-track").scrollLeft+=dir*160;
 }
 
-/* ZOOM + LIGHTBOX */
+/* ZOOM */
 let zoomImgs=[],zoomIndex=0;
-const lightbox=document.getElementById("lightbox");
-const zoomed=document.getElementById("zoomed");
-
 function zoom(img){
   zoomImgs=[...img.parentElement.querySelectorAll("img")];
   zoomIndex=zoomImgs.indexOf(img);
@@ -431,21 +265,8 @@ function zoom(img){
   lightbox.style.display="flex";
   history.pushState({zoom:true},"");
 }
-
-function zoomNext(){
-  zoomIndex=(zoomIndex+1)%zoomImgs.length;
-  zoomed.src=zoomImgs[zoomIndex].src;
-}
-
-function zoomPrev(){
-  zoomIndex=(zoomIndex-1+zoomImgs.length)%zoomImgs.length;
-  zoomed.src=zoomImgs[zoomIndex].src;
-}
-
-lightbox.addEventListener("click",e=>{
-  if(e.target===lightbox) lightbox.style.display="none";
-});
-
+function zoomNext(){zoomIndex=(zoomIndex+1)%zoomImgs.length;zoomed.src=zoomImgs[zoomIndex].src}
+function zoomPrev(){zoomIndex=(zoomIndex-1+zoomImgs.length)%zoomImgs.length;zoomed.src=zoomImgs[zoomIndex].src}
 window.addEventListener("popstate",()=>lightbox.style.display="none");
 
 /* SWIPE */
@@ -462,49 +283,64 @@ lightbox.addEventListener("touchend",e=>{
   const el=document.getElementById("countdown");
   function tick(){
     let y=new Date().getFullYear();
-    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
-    if(Date.now()>t) t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
+    let t=new Date(`Feb 14 ${y} 00:00`).getTime();
+    if(Date.now()>t) t=new Date(`Feb 14 ${y+1} 00:00`).getTime();
     let d=t-Date.now();
     el.innerHTML=`💝 ${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s`;
   }
   tick();setInterval(tick,1000);
 })();
 
-/* PROMO */
-const promo=document.getElementById("promo");
-const promoBox=document.getElementById("promo-box");
-const promoClose=document.getElementById("promo-close");
-
+/* PROMO SHOW */
 setTimeout(()=>{
   if(localStorage.getItem("promoUsed")!==new Date().toDateString()){
     promo.style.display="flex";
-    setTimeout(()=>promoClose.style.display="block",5000);
   }
 },10000);
 
-function closePromo(){
-  promo.style.display="none";
-}
-
+/* PROMO LOGIC (YOUR REQUESTED CODE) */
 function tryLuck(){
-  localStorage.setItem("promoUsed",new Date().toDateString());
-  let win=Math.random()<0.05;
+  localStorage.setItem("promoUsed", new Date().toDateString());
 
-  if(win){
-    promoBox.innerHTML=`
-      <h3>🎉 Congratulations!</h3>
-      <p>You won a discount!</p>
-      <p>Applies to selected product</p>
-      <p>📸 Screenshot & send to us</p>
-      <span id="promo-close" onclick="closePromo()">✕</span>
-    `;
-  }else{
-    promoBox.innerHTML=`
+  const products = [
+    "Polaroid Prints",
+    "Polaroid Box Set",
+    "Bracelet",
+    "Photo Frame",
+    "Keychain",
+    "Photostrips"
+  ];
+
+  const win = Math.random() < 0.05;
+  const promoBox = document.getElementById("promo-box");
+
+  if(!win){
+    promoBox.innerHTML = `
       <h3>😔 Better luck next time</h3>
       <p>Try again tomorrow 💕</p>
-      <span id="promo-close" onclick="closePromo()">✕</span>
+      <span id="promo-close" onclick="promo.style.display='none'">✕</span>
     `;
+    setTimeout(()=>promoClose.style.display="block",5000);
+    return;
   }
+
+  const chosenProduct = products[Math.floor(Math.random()*products.length)];
+  const code = Math.random().toString(36).substring(2,8).toUpperCase();
+  const now = new Date().toLocaleString();
+
+  promoBox.innerHTML = `
+    <h3>🎉 Congratulations!</h3>
+    <h2>10% OFF</h2>
+    <p><b>Applies to:</b> ${chosenProduct}</p>
+    <p><b>Code:</b> ${code}</p>
+    <p><b>Date:</b> ${now}</p>
+    <p>📸 Screenshot this and send it to us</p>
+    <a href="https://m.me/61579128398313" target="_blank">
+      <button>Message Us</button>
+    </a>
+    <span id="promo-close" onclick="promo.style.display='none'">✕</span>
+  `;
+  setTimeout(()=>promoClose.style.display="block",5000);
 }
 </script>
 
