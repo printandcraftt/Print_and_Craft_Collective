@@ -493,27 +493,61 @@ setTimeout(()=>promoClose.style.display="block",5000);
 },10000);
 
 function tryLuck(){
-localStorage.setItem("promoUsed",new Date().toDateString());
-const products=["Polaroid Prints","Polaroid Box Set","Bracelet","Photo Frame","Keychain","Photostrips"];
-if(Math.random()>=0.05){
-promoBox.innerHTML=`<h3>😔 Better luck next time</h3><p>Try again tomorrow 💕</p><span id="promo-close" onclick="promo.style.display='none'">✕</span>`;
-setTimeout(()=>document.getElementById("promo-close").style.display="block",5000);
-return;
-}
-const product=products[Math.floor(Math.random()*products.length)];
-const now = new Date().toLocaleString();
+  localStorage.setItem("promoUsed", new Date().toDateString());
 
-promoBox.innerHTML = `
-  <h3>🎉 Congratulations!</h3>
-  <h2>10% OFF</h2>
-  <p><b>Applies to:</b> ${product}</p>
-  <p><b>Date & Time:</b> ${now}</p>
-  <p>📸 Screenshot & send to us</p>
-  <a href="https://m.me/61579128398313" target="_blank">
-    <button>Message Us</button>
-  </a>
-  <span id="promo-close" onclick="promo.style.display='none'">✕</span>`;
-setTimeout(()=>document.getElementById("promo-close").style.display="block",5000);
+  const products = [
+    "Polaroid Prints",
+    "Polaroid Box Set",
+    "Bracelet",
+    "Photo Frame",
+    "Keychain",
+    "Photostrips"
+  ];
+
+  const promoBox = document.getElementById("promo-box");
+
+  /* 50% win / 50% lose */
+  const isWin = Math.random() < 0.5;
+
+  if(!isWin){
+    promoBox.innerHTML = `
+      <h3>😔 Better luck next time</h3>
+      <p>Try again tomorrow 💕</p>
+      <span id="promo-close" onclick="promo.style.display='none'">✕</span>
+    `;
+    setTimeout(() => {
+      document.getElementById("promo-close").style.display = "block";
+    }, 5000);
+    return;
+  }
+
+  /* Discount rarity */
+  const roll = Math.random();
+  let discount = 10;
+
+  if (roll < 0.03) discount = 20;     // VERY RARE
+  else if (roll < 0.15) discount = 15; // RARE
+
+  const product = products[Math.floor(Math.random() * products.length)];
+  const code = Math.random().toString(36).substring(2,8).toUpperCase();
+  const now = new Date().toLocaleString();
+
+  promoBox.innerHTML = `
+    <h3>🎉 Congratulations!</h3>
+    <h2>${discount}% OFF</h2>
+    <p><b>Applies to:</b> ${product}</p>
+    <p><b>Code:</b> ${code}</p>
+    <p><b>Date & Time:</b> ${now}</p>
+    <p>📸 Screenshot & send to us</p>
+    <a href="https://m.me/61579128398313" target="_blank">
+      <button>Message Us</button>
+    </a>
+    <span id="promo-close" onclick="promo.style.display='none'">✕</span>
+  `;
+
+  setTimeout(() => {
+    document.getElementById("promo-close").style.display = "block";
+  }, 5000);
 }
 </script>
 
