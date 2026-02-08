@@ -434,6 +434,14 @@ border-radius:30px;border:2px solid #ff4d6d;color:#ff4d6d;text-decoration:none;"
 </footer>
 
 <script>
+/* ===== DOM REFERENCES (REQUIRED) ===== */
+const promo = document.getElementById("promo");
+const promoBox = document.getElementById("promo-box");
+const promoClose = document.getElementById("promo-close");
+const lightbox = document.getElementById("lightbox");
+const zoomed = document.getElementById("zoomed");
+const countdown = document.getElementById("countdown");
+
 function toggle(id){
 const el=document.getElementById(id);
 el.style.display=el.style.display==="block"?"none":"block";
