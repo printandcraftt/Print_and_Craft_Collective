@@ -7,18 +7,23 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(180deg,#fff0f5,#ffffff);
   color:#5a2a3a;
 }
+
+/* HEADER */
 header{
   background:linear-gradient(135deg,#ff4d6d,#ff8fab);
   color:#fff;
   text-align:center;
   padding:40px 20px;
 }
+
+/* PRODUCTS GRID */
 section{padding:40px 20px;}
 .products{
   display:grid;
@@ -34,15 +39,18 @@ section{padding:40px 20px;}
   box-shadow:0 12px 30px rgba(255,120,150,.25);
   text-align:center;
 }
+
 .product-card img.main-img{
   width:100%;
   border-radius:18px;
 }
+
 .price{
   margin-top:6px;
   font-weight:bold;
   color:#d6336c;
 }
+
 .view-btn{
   margin-top:14px;
   padding:12px 26px;
@@ -55,7 +63,11 @@ section{padding:40px 20px;}
 }
 
 /* SLIDER */
-.designs{display:none;margin-top:15px;position:relative;}
+.designs{
+  display:none;
+  margin-top:15px;
+  position:relative;
+}
 .design-track{
   display:flex;
   gap:10px;
@@ -69,9 +81,11 @@ section{padding:40px 20px;}
   border-radius:14px;
   cursor:pointer;
 }
+
+/* ARROWS */
 .arrow{
   position:absolute;
-  top:45%;
+  top:40%;
   background:#ff4d6d;
   color:#fff;
   border:none;
@@ -79,6 +93,7 @@ section{padding:40px 20px;}
   padding:6px 12px;
   border-radius:50%;
   cursor:pointer;
+  z-index:5;
 }
 .arrow.left{left:-10px;}
 .arrow.right{right:-10px;}
@@ -98,7 +113,7 @@ section{padding:40px 20px;}
   max-height:90%;
 }
 
-/* FLOATING */
+/* FLOATING ORDER */
 #order-float{
   position:fixed;
   bottom:20px;
@@ -109,8 +124,11 @@ section{padding:40px 20px;}
   border-radius:40px;
   font-weight:bold;
   text-decoration:none;
-  z-index:9999;
+  z-index:10000;
+  box-shadow:0 10px 25px rgba(255,77,109,.5);
 }
+
+/* COUNTDOWN */
 #countdown-float{
   position:fixed;
   bottom:80px;
@@ -120,7 +138,8 @@ section{padding:40px 20px;}
   padding:12px 20px;
   border-radius:30px;
   font-weight:bold;
-  z-index:9999;
+  z-index:10000;
+  box-shadow:0 10px 25px rgba(255,77,109,.35);
 }
 
 /* PROMO */
@@ -129,7 +148,7 @@ section{padding:40px 20px;}
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.6);
-  z-index:10000;
+  z-index:10001;
   align-items:center;
   justify-content:center;
 }
@@ -138,7 +157,7 @@ section{padding:40px 20px;}
   padding:28px;
   border-radius:22px;
   text-align:center;
-  max-width:320px;
+  max-width:340px;
   position:relative;
 }
 #promo-box button{
@@ -157,7 +176,7 @@ section{padding:40px 20px;}
   top:10px;
   right:14px;
   cursor:pointer;
-  font-weight:bold;
+  font-size:18px;
 }
 </style>
 </head>
@@ -172,8 +191,7 @@ section{padding:40px 20px;}
 <section>
 <div class="products">
 
-<!-- 🔽 PASTE YOUR PRODUCT CARDS HERE 🔽 -->
-  <!-- BOUQUET -->
+<!-- BOUQUET -->
 <div class="product-card">
   <img src="image/bouquet/Bouquet.jpg" class="main-img">
   <h3>💐 Fuzzywire Bouquet</h3>
@@ -348,13 +366,6 @@ section{padding:40px 20px;}
 <div id="countdown-float">💝 Loading…</div>
 <a id="order-float" href="https://m.me/61579128398313" target="_blank">💬 Order Now</a>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="arrow left" onclick="zoomPrev()">‹</button>
-  <img id="zoomed">
-  <button class="arrow right" onclick="zoomNext()">›</button>
-</div>
-
 <!-- PROMO -->
 <div id="promo-overlay">
   <div id="promo-box">
@@ -365,31 +376,37 @@ section{padding:40px 20px;}
   </div>
 </div>
 
-<!-- CONTACT -->
-<section style="background:#fff0f5;text-align:center;">
-  <h2 style="color:#d6336c;">❤️ Contact Us ❤️</h2>
-
-  <a href="https://m.me/61579128398313" target="_blank" class="view-btn">💬 Messenger</a><br><br>
-  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank" class="view-btn">👤 Facebook Account</a><br><br>
-  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank" class="view-btn">📘 Facebook Page</a>
-</section>
-
-<footer style="text-align:center;padding:20px;color:#777;">
-  © 2026 Print & Craft Collective
-</footer>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="arrow left" onclick="zoomPrev()">‹</button>
+  <img id="zoomed">
+  <button class="arrow right" onclick="zoomNext()">›</button>
+</div>
 
 <script>
-/* VIEW DESIGNS */
+/* TOGGLE */
 function toggle(id){
   const box=document.getElementById(id);
-  if(box) box.style.display=box.style.display==="block"?"none":"block";
+  box.style.display=box.style.display==="block"?"none":"block";
 }
 
-/* SLIDER */
+/* SLIDE */
 function slide(btn,dir){
-  const track=btn.parentElement.querySelector(".design-track");
-  if(track) track.scrollBy({left:dir*160,behavior:"smooth"});
+  btn.parentElement.querySelector(".design-track")
+    .scrollBy({left:dir*160,behavior:"smooth"});
 }
+
+/* COUNTDOWN */
+(function(){
+  const el=document.getElementById("countdown-float");
+  setInterval(()=>{
+    let y=new Date().getFullYear();
+    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
+    if(Date.now()>t) t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
+    let d=t-Date.now();
+    el.innerHTML=`💝 ${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s`;
+  },1000);
+})();
 
 /* ZOOM */
 let zoomImages=[],zoomIndex=0;
@@ -398,68 +415,45 @@ function zoom(img){
   zoomIndex=zoomImages.indexOf(img);
   document.getElementById("zoomed").src=img.src;
   document.getElementById("lightbox").style.display="flex";
-  history.pushState({zoom:true},"");
 }
-function zoomNext(){zoomIndex=(zoomIndex+1)%zoomImages.length;zoomed.src=zoomImages[zoomIndex].src;}
-function zoomPrev(){zoomIndex=(zoomIndex-1+zoomImages.length)%zoomImages.length;zoomed.src=zoomImages[zoomIndex].src;}
-lightbox.onclick=e=>{if(e.target.id==="lightbox")lightbox.style.display="none";}
-window.onpopstate=()=>lightbox.style.display="none";
-
-/* SWIPE */
-let sx=0;
-lightbox.addEventListener("touchstart",e=>sx=e.touches[0].clientX);
-lightbox.addEventListener("touchend",e=>{
-  let ex=e.changedTouches[0].clientX;
-  if(ex<sx-50)zoomNext();
-  if(ex>sx+50)zoomPrev();
-});
-
-/* COUNTDOWN */
-(function(){
-  const el=document.getElementById("countdown-float");
-  function u(){
-    let y=new Date().getFullYear();
-    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
-    if(Date.now()>t)t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
-    let d=t-Date.now();
-    el.innerHTML=`💝 ${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s`;
-  }
-  u();setInterval(u,1000);
-})();
+function zoomNext(){zoomIndex=(zoomIndex+1)%zoomImages.length;document.getElementById("zoomed").src=zoomImages[zoomIndex].src;}
+function zoomPrev(){zoomIndex=(zoomIndex-1+zoomImages.length)%zoomImages.length;document.getElementById("zoomed").src=zoomImages[zoomIndex].src;}
+document.getElementById("lightbox").onclick=e=>{if(e.target.id==="lightbox")e.target.style.display="none";}
 
 /* PROMO */
 setTimeout(()=>{
   if(localStorage.getItem("promoUsed")!==new Date().toDateString()){
-    promo-overlay.style.display="flex";
-    setTimeout(()=>promo-close.style.display="block",5000);
+    document.getElementById("promo-overlay").style.display="flex";
+    setTimeout(()=>document.getElementById("promo-close").style.display="block",5000);
   }
 },10000);
+
+document.getElementById("promo-close").onclick=()=>document.getElementById("promo-overlay").style.display="none";
 
 function randomCode(){return Math.random().toString(36).substring(2,8).toUpperCase();}
 
 function tryLuck(){
   localStorage.setItem("promoUsed",new Date().toDateString());
-  let r=Math.random()*200;
+  let r=Math.random()*200; // 1 in 200 for jackpot
   let percent=0,product="";
-
-  if(r<1){percent=20;product="ANY PRODUCT";}
-  else if(r<5){percent=15;product="Bouquet / Frames";}
-  else if(r<80){percent=10;product="Polaroid / Small Items";}
-
-  if(percent===0){
-    promo-box.innerHTML=`<h3>😔 Better luck next time</h3><p>Try again tomorrow 💕</p><span id="promo-close">✕</span>`;
-  }else{
-    promo-box.innerHTML=`
-      <h3>🎉 Congratulations!</h3>
-      <h2>${percent}% OFF</h2>
-      <p><b>Product:</b> ${product}</p>
-      <p><b>Code:</b> ${randomCode()}</p>
-      <a href="https://m.me/61579128398313" target="_blank"><button>Message Now</button></a>
-      <span id="promo-close">✕</span>`;
-  }
-  setTimeout(()=>promo-close.style.display="block",5000);
+  if(r<1){percent=20;product="Fuzzywire Bouquet";}
+  else if(r<6){percent=15;product="Any Photo Product";}
+  else if(r<60){percent=10;product="Polaroid Prints";}
+  const box=document.getElementById("promo-box");
+  if(percent===0){box.innerHTML="<h3>😔 Better luck next time</h3>";return;}
+  box.innerHTML=`
+    <h3>🎉 Congratulations!</h3>
+    <h2>${percent}% OFF</h2>
+    <p><b>Product:</b> ${product}</p>
+    <p><b>Code:</b> ${randomCode()}</p>
+    <p>📸 Screenshot & send to us</p>
+    <a href="https://m.me/61579128398313" target="_blank"><button>Message Now</button></a>`;
 }
 </script>
+
+<footer style="text-align:center;padding:25px;font-size:13px;color:#777;">
+© 2026 Print & Craft Collective • Handmade with 💗
+</footer>
 
 </body>
 </html>
