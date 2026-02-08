@@ -68,14 +68,12 @@ section{padding:40px 20px;}
   margin-top:15px;
   position:relative;
 }
-
 .design-track{
   display:flex;
   gap:10px;
   overflow-x:auto;
   scroll-behavior:smooth;
 }
-
 .design-track img{
   width:120px;
   height:170px;
@@ -95,6 +93,7 @@ section{padding:40px 20px;}
   padding:6px 12px;
   border-radius:50%;
   cursor:pointer;
+  z-index:5;
 }
 .arrow.left{left:-10px;}
 .arrow.right{right:-10px;}
@@ -109,28 +108,28 @@ section{padding:40px 20px;}
   align-items:center;
   z-index:9999;
 }
-
 .lightbox img{
   max-width:90%;
   max-height:90%;
 }
 
 /* FLOATING ORDER */
-.floating-order{
+#order-float{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#ff4d6d;
   color:#fff;
-  padding:14px 24px;
+  padding:16px 26px;
   border-radius:40px;
   font-weight:bold;
   text-decoration:none;
-  z-index:9999;
+  z-index:10000;
+  box-shadow:0 10px 25px rgba(255,77,109,.5);
 }
 
 /* COUNTDOWN */
-.countdown{
+#countdown-float{
   position:fixed;
   bottom:80px;
   right:20px;
@@ -139,34 +138,45 @@ section{padding:40px 20px;}
   padding:12px 20px;
   border-radius:30px;
   font-weight:bold;
-  box-shadow:0 10px 25px rgba(255,77,109,.3);
-  z-index:9999;
+  z-index:10000;
+  box-shadow:0 10px 25px rgba(255,77,109,.35);
 }
 
 /* PROMO */
-.promo{
+#promo-overlay{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.6);
-  justify-content:center;
+  z-index:10001;
   align-items:center;
-  z-index:10000;
+  justify-content:center;
 }
-
-.promo-box{
+#promo-box{
   background:#fff;
   padding:28px;
   border-radius:22px;
-  max-width:320px;
   text-align:center;
+  max-width:340px;
+  position:relative;
 }
-
-footer{
-  text-align:center;
-  padding:20px;
-  font-size:13px;
-  color:#777;
+#promo-box button{
+  margin-top:12px;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+#promo-close{
+  display:none;
+  position:absolute;
+  top:10px;
+  right:14px;
+  cursor:pointer;
+  font-size:18px;
 }
 </style>
 </head>
@@ -180,7 +190,8 @@ footer{
 
 <section>
 <div class="products">
-<!-- ================= BOUQUET ================= -->
+
+<!-- BOUQUET -->
 <div class="product-card">
   <img src="image/bouquet/Bouquet.jpg" class="main-img">
   <h3>💐 Fuzzywire Bouquet</h3>
@@ -212,7 +223,7 @@ footer{
   </div>
 </div>
 
-<!-- ================= POLAROID ================= -->
+<!-- POLAROID -->
 <div class="product-card">
   <img src="image/polaroid/Polaroid.jpg" class="main-img">
   <h3>🖤 Polaroid Prints</h3>
@@ -239,7 +250,7 @@ footer{
   </div>
 </div>
 
-<!-- ================= BOX SET ================= -->
+  <!-- ================= BOX SET ================= -->
 <div class="product-card">
   <img src="image/box-set/Box set.jpg" class="main-img">
   <h3>🎁 Polaroid Box Set</h3>
@@ -347,107 +358,15 @@ footer{
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
-<!-- ================= FLOATING ORDER + COUNTDOWN ================= -->
-<div id="countdown-float">💝 Loading…</div>
 
-<a id="order-float" href="https://m.me/61579128398313" target="_blank">
-  💬 Order Now
-</a>
-
-<style>
-#order-float{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#ff4d6d;
-  color:#fff;
-  padding:16px 26px;
-  border-radius:40px;
-  font-weight:bold;
-  text-decoration:none;
-  z-index:9999;
-  box-shadow:0 10px 25px rgba(255,77,109,.5);
-}
-#countdown-float{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  background:#fff;
-  color:#ff4d6d;
-  padding:12px 20px;
-  border-radius:30px;
-  font-weight:bold;
-  z-index:9999;
-  box-shadow:0 10px 25px rgba(255,77,109,.35);
-}
-</style>
-
-<script>
-/* ================= COUNTDOWN ================= */
-(function(){
-  const el=document.getElementById("countdown-float");
-  function update(){
-    let y=new Date().getFullYear();
-    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
-    if(Date.now()>t) t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
-    let d=t-Date.now();
-    let days=Math.floor(d/86400000);
-    let hrs=Math.floor((d/3600000)%24);
-    let mins=Math.floor((d/60000)%60);
-    let secs=Math.floor((d/1000)%60);
-    el.innerHTML=`💝 ${days}d ${hrs}h ${mins}m ${secs}s`;
-  }
-  update();
-  setInterval(update,1000);
-})();
-</script>
-
-<!-- ================= LIGHTBOX WITH ARROWS ================= -->
-<div class="lightbox" id="lightbox">
-  <button class="arrow left" onclick="zoomPrev()">‹</button>
-  <img id="zoomed">
-  <button class="arrow right" onclick="zoomNext()">›</button>
 </div>
+</section>
 
-<script>
-let zoomImages=[], zoomIndex=0;
+<!-- FLOATING -->
+<div id="countdown-float">💝 Loading…</div>
+<a id="order-float" href="https://m.me/61579128398313" target="_blank">💬 Order Now</a>
 
-function zoom(img){
-  zoomImages=[...img.parentElement.querySelectorAll("img")];
-  zoomIndex=zoomImages.indexOf(img);
-  document.getElementById("zoomed").src=img.src;
-  document.getElementById("lightbox").style.display="flex";
-  history.pushState({zoom:true},"");
-}
-
-function zoomNext(){
-  zoomIndex=(zoomIndex+1)%zoomImages.length;
-  document.getElementById("zoomed").src=zoomImages[zoomIndex].src;
-}
-function zoomPrev(){
-  zoomIndex=(zoomIndex-1+zoomImages.length)%zoomImages.length;
-  document.getElementById("zoomed").src=zoomImages[zoomIndex].src;
-}
-
-document.getElementById("lightbox").addEventListener("click",e=>{
-  if(e.target.id==="lightbox") closeZoom();
-});
-function closeZoom(){
-  document.getElementById("lightbox").style.display="none";
-}
-window.addEventListener("popstate",()=>closeZoom());
-
-/* SWIPE */
-let sx=0;
-document.getElementById("lightbox").addEventListener("touchstart",e=>sx=e.touches[0].clientX);
-document.getElementById("lightbox").addEventListener("touchend",e=>{
-  let ex=e.changedTouches[0].clientX;
-  if(ex<sx-50) zoomNext();
-  if(ex>sx+50) zoomPrev();
-});
-</script>
-
-<!-- ================= PROMO POPUP ================= -->
+<!-- PROMO -->
 <div id="promo-overlay">
   <div id="promo-box">
     <h3>🎁 Valentine Promo</h3>
@@ -457,45 +376,51 @@ document.getElementById("lightbox").addEventListener("touchend",e=>{
   </div>
 </div>
 
-<style>
-#promo-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:99999;
-  align-items:center;
-  justify-content:center;
-}
-#promo-box{
-  background:#fff;
-  padding:28px;
-  border-radius:22px;
-  text-align:center;
-  max-width:320px;
-  position:relative;
-}
-#promo-box button{
-  margin-top:12px;
-  padding:12px 24px;
-  border:none;
-  border-radius:30px;
-  background:#ff4d6d;
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-}
-#promo-close{
-  display:none;
-  position:absolute;
-  top:10px;
-  right:14px;
-  cursor:pointer;
-}
-</style>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="arrow left" onclick="zoomPrev()">‹</button>
+  <img id="zoomed">
+  <button class="arrow right" onclick="zoomNext()">›</button>
+</div>
 
 <script>
-/* SHOW PROMO AFTER 10s */
+/* TOGGLE */
+function toggle(id){
+  const box=document.getElementById(id);
+  box.style.display=box.style.display==="block"?"none":"block";
+}
+
+/* SLIDE */
+function slide(btn,dir){
+  btn.parentElement.querySelector(".design-track")
+    .scrollBy({left:dir*160,behavior:"smooth"});
+}
+
+/* COUNTDOWN */
+(function(){
+  const el=document.getElementById("countdown-float");
+  setInterval(()=>{
+    let y=new Date().getFullYear();
+    let t=new Date(`February 14, ${y} 00:00:00`).getTime();
+    if(Date.now()>t) t=new Date(`February 14, ${y+1} 00:00:00`).getTime();
+    let d=t-Date.now();
+    el.innerHTML=`💝 ${Math.floor(d/86400000)}d ${Math.floor(d/3600000)%24}h ${Math.floor(d/60000)%60}m ${Math.floor(d/1000)%60}s`;
+  },1000);
+})();
+
+/* ZOOM */
+let zoomImages=[],zoomIndex=0;
+function zoom(img){
+  zoomImages=[...img.parentElement.querySelectorAll("img")];
+  zoomIndex=zoomImages.indexOf(img);
+  document.getElementById("zoomed").src=img.src;
+  document.getElementById("lightbox").style.display="flex";
+}
+function zoomNext(){zoomIndex=(zoomIndex+1)%zoomImages.length;document.getElementById("zoomed").src=zoomImages[zoomIndex].src;}
+function zoomPrev(){zoomIndex=(zoomIndex-1+zoomImages.length)%zoomImages.length;document.getElementById("zoomed").src=zoomImages[zoomIndex].src;}
+document.getElementById("lightbox").onclick=e=>{if(e.target.id==="lightbox")e.target.style.display="none";}
+
+/* PROMO */
 setTimeout(()=>{
   if(localStorage.getItem("promoUsed")!==new Date().toDateString()){
     document.getElementById("promo-overlay").style.display="flex";
@@ -503,104 +428,32 @@ setTimeout(()=>{
   }
 },10000);
 
-document.getElementById("promo-close").onclick=()=>{
-  document.getElementById("promo-overlay").style.display="none";
-};
+document.getElementById("promo-close").onclick=()=>document.getElementById("promo-overlay").style.display="none";
 
-function randomCode(){
-  return Math.random().toString(36).substring(2,8).toUpperCase();
-}
+function randomCode(){return Math.random().toString(36).substring(2,8).toUpperCase();}
 
 function tryLuck(){
   localStorage.setItem("promoUsed",new Date().toDateString());
-
-  let r=Math.random()*100;
-  let prize="No luck 😔";
-  let product="";
-  let percent=0;
-
-  if(r<0.5){ percent=20; product="Fuzzywire Bouquet"; }
-  else if(r<2){ percent=15; product="Photo Products"; }
-  else if(r<25){ percent=10; product="Polaroid Prints"; }
-
+  let r=Math.random()*200; // 1 in 200 for jackpot
+  let percent=0,product="";
+  if(r<1){percent=20;product="Fuzzywire Bouquet";}
+  else if(r<6){percent=15;product="Any Photo Product";}
+  else if(r<60){percent=10;product="Polaroid Prints";}
   const box=document.getElementById("promo-box");
-
-  if(percent===0){
-    box.innerHTML=`<h3>😔 Better luck next time</h3>`;
-    return;
-  }
-
-  let code=randomCode();
-  let now=new Date().toLocaleString();
-
+  if(percent===0){box.innerHTML="<h3>😔 Better luck next time</h3>";return;}
   box.innerHTML=`
     <h3>🎉 Congratulations!</h3>
     <h2>${percent}% OFF</h2>
     <p><b>Product:</b> ${product}</p>
-    <p><b>Code:</b> ${code}</p>
-    <p><b>Date:</b> ${now}</p>
+    <p><b>Code:</b> ${randomCode()}</p>
     <p>📸 Screenshot & send to us</p>
-    <a href="https://m.me/61579128398313" target="_blank">
-      <button>Message Now</button>
-    </a>
-  `;
+    <a href="https://m.me/61579128398313" target="_blank"><button>Message Now</button></a>`;
 }
 </script>
-<!-- ================= ORDER NOW SECTION (BOTTOM) ================= -->
-<section style="background:#fff0f5;padding:50px 20px;text-align:center;">
-  <h2 style="color:#d6336c;font-size:32px;">❤️ Order Now ❤️</h2>
-  <p style="margin-bottom:25px;">Message us to place your order or ask questions 💬</p>
 
-  <a href="https://m.me/61579128398313" target="_blank"
-     style="display:block;margin:12px auto;padding:14px 26px;
-     max-width:320px;border-radius:30px;
-     background:#ff4d6d;color:#fff;
-     font-weight:bold;text-decoration:none;">
-    💬 Message on Messenger
-  </a>
-
-  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank"
-     style="display:block;margin:12px auto;padding:14px 26px;
-     max-width:320px;border-radius:30px;
-     background:#ffffff;color:#ff4d6d;
-     font-weight:bold;text-decoration:none;
-     border:2px solid #ff4d6d;">
-    👤 Visit Facebook Account
-  </a>
-
-  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank"
-     style="display:block;margin:12px auto;padding:14px 26px;
-     max-width:320px;border-radius:30px;
-     background:#ffffff;color:#ff4d6d;
-     font-weight:bold;text-decoration:none;
-     border:2px solid #ff4d6d;">
-    📘 Visit Facebook Page
-  </a>
-
-  <a href="https://www.facebook.com/share/p/14W7WzKb7QJ/" target="_blank"
-     style="display:block;margin:12px auto;padding:14px 26px;
-     max-width:320px;border-radius:30px;
-     background:#ffe6ee;color:#d6336c;
-     font-weight:bold;text-decoration:none;">
-    ⭐ Leave Us a Feedback
-  </a>
-</section>
-
-<!-- ================= FOOTER ================= -->
 <footer style="text-align:center;padding:25px;font-size:13px;color:#777;">
-  © 2026 Print & Craft Collective • Handmade with 💗 • Student-friendly
+© 2026 Print & Craft Collective • Handmade with 💗
 </footer>
-
-<!-- ================= FINAL SAFETY CLOSE ================= -->
-<script>
-/* Prevent promo reopening same day */
-window.addEventListener("load",()=>{
-  if(localStorage.getItem("promoUsed")===new Date().toDateString()){
-    const p=document.getElementById("promo-overlay");
-    if(p) p.style.display="none";
-  }
-});
-</script>
 
 </body>
 </html>
