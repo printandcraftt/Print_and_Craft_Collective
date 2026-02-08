@@ -2,25 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Print and Craft💗</title>
+<title>Print & Craft Collective 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:Poppins,Arial,sans-serif;
   background:linear-gradient(180deg,#fff0f5,#ffffff);
   color:#5a2a3a;
 }
+
+/* HEADER */
 header{
   background:linear-gradient(135deg,#ff4d6d,#ff8fab);
   color:#fff;
   text-align:center;
   padding:40px 20px;
 }
-section{
-  padding:40px 20px;
-}
+header h1{margin:0;font-size:32px}
+header p{margin-top:10px}
+
+/* PRODUCTS GRID */
+section{padding:40px 20px}
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -54,11 +59,7 @@ section{
 }
 
 /* SLIDER */
-.designs{
-  display:none;
-  margin-top:15px;
-  position:relative;
-}
+.designs{display:none;margin-top:15px;position:relative}
 .design-track{
   display:flex;
   gap:10px;
@@ -83,10 +84,10 @@ section{
   border-radius:50%;
   cursor:pointer;
 }
-.arrow.left{left:-12px;}
-.arrow.right{right:-12px;}
+.arrow.left{left:-12px}
+.arrow.right{right:-12px}
 
-/* ZOOM */
+/* LIGHTBOX */
 .lightbox{
   display:none;
   position:fixed;
@@ -100,42 +101,61 @@ section{
   max-width:90%;
   max-height:90%;
 }
-.lb-arrow{
-  position:absolute;
+.lightbox .arrow{
   top:50%;
   font-size:40px;
-  color:#fff;
-  cursor:pointer;
+  background:none;
 }
-.lb-left{left:20px;}
-.lb-right{right:20px;}
 
 /* FLOATING */
-.floating-wrap{
+.float-order{
   position:fixed;
   bottom:20px;
   right:20px;
-  z-index:10000;
-  text-align:center;
-}
-.countdown{
-  background:#fff;
-  color:#ff4d6d;
-  padding:10px 16px;
-  border-radius:30px;
-  font-weight:bold;
-  box-shadow:0 6px 18px rgba(255,77,109,.35);
-  margin-bottom:10px;
-  font-size:13px;
-}
-.floating-btn{
-  display:block;
   background:#ff4d6d;
   color:#fff;
-  padding:16px 26px;
-  border-radius:35px;
+  padding:14px 24px;
+  border-radius:30px;
   font-weight:bold;
   text-decoration:none;
+  z-index:9998;
+}
+.countdown{
+  position:fixed;
+  bottom:70px;
+  right:20px;
+  background:#fff;
+  color:#ff4d6d;
+  padding:10px 18px;
+  border-radius:30px;
+  font-weight:bold;
+  box-shadow:0 10px 25px rgba(255,77,109,.3);
+  z-index:9998;
+}
+
+/* CONTACT */
+.contact{
+  padding:40px 20px;
+  text-align:center;
+}
+.contact a{
+  display:block;
+  margin:10px auto;
+  max-width:300px;
+  padding:12px;
+  border-radius:25px;
+  text-decoration:none;
+  border:2px solid #ff4d6d;
+  color:#ff4d6d;
+  font-weight:bold;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+  color:#777;
 }
 </style>
 </head>
@@ -143,12 +163,12 @@ section{
 <body>
 
 <header>
-  <h1>💖 Print & Craft 💖</h1>
+  <h1>💖 Print & Craft Collective 💖</h1>
   <p>Valentine gifts made with love</p>
 </header>
 
 <section>
-  <div class="products">
+<div class="products">
 <!-- BOUQUET -->
 <div class="product-card">
   <img src="image/bouquet/Bouquet.jpg" class="main-img">
@@ -176,33 +196,6 @@ section{
       <img src="image/bouquet/Bouquet16.jpg" onclick="zoom(this)">
       <img src="image/bouquet/Bouquet17.jpg" onclick="zoom(this)">
       <img src="image/bouquet/Bouquet18.jpg" onclick="zoom(this)">
-    </div>
-    <button class="arrow right" onclick="slide(this,1)">›</button>
-  </div>
-</div>
-
-<!-- POLAROID -->
-<div class="product-card">
-  <img src="image/polaroid/Polaroid.jpg" class="main-img">
-  <h3>🖤 Polaroid Prints</h3>
-  <div class="price">Starts at ₱50 (15 pcs)</div>
-  <button class="view-btn" onclick="toggle('polaroid')">View Designs</button>
-  <div class="designs" id="polaroid">
-    <button class="arrow left" onclick="slide(this,-1)">‹</button>
-    <div class="design-track">
-      <img src="image/polaroid/Polaroid1.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid2.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid3.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid4.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid5.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid6.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid7.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid8.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid9.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid10.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid11.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid12.jpg" onclick="zoom(this)">
-      <img src="image/polaroid/Polaroid13.jpg" onclick="zoom(this)">
     </div>
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
@@ -317,180 +310,232 @@ section{
     <button class="arrow right" onclick="slide(this,1)">›</button>
   </div>
 </div>
-   </div> <!-- end products -->
+
+<!-- POLAROID -->
+<div class="product-card">
+  <img src="image/polaroid/Polaroid.jpg" class="main-img">
+  <h3>🖤 Polaroid Prints</h3>
+  <div class="price">Starts at ₱50 (15 pcs)</div>
+  <button class="view-btn" onclick="toggle('polaroid')">View Designs</button>
+  <div class="designs" id="polaroid">
+    <button class="arrow left" onclick="slide(this,-1)">‹</button>
+    <div class="design-track">
+      <img src="image/polaroid/Polaroid1.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid2.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid3.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid4.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid5.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid6.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid7.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid8.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid9.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid10.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid11.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid12.jpg" onclick="zoom(this)">
+      <img src="image/polaroid/Polaroid13.jpg" onclick="zoom(this)">
+    </div>
+    <button class="arrow right" onclick="slide(this,1)">›</button>
+  </div>
+</div>
+</div>
 </section>
 
-<!-- CONTACT / ORDER NOW SECTION -->
-<section style="text-align:center;padding:40px 20px;background:#fff0f5;">
-  <h2 style="color:#d6336c;">💖 Order Now 💖</h2>
+<!-- CONTACT SECTION -->
+<div class="contact">
+  <h2>Order Now ❤️</h2>
 
-  <a href="https://m.me/61579128398313" target="_blank"
-     style="display:block;margin:12px auto;max-width:300px;"
-     class="floating-btn">💬 Message on Messenger</a>
+  <a href="https://m.me/61579128398313" target="_blank">
+    💬 Message on Messenger
+  </a>
 
-  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank"
-     style="display:block;margin:12px auto;max-width:300px;"
-     class="floating-btn">👤 Facebook Account</a>
+  <a href="https://www.facebook.com/profile.php?id=61579128398313" target="_blank">
+    👤 Visit Facebook Account
+  </a>
 
-  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank"
-     style="display:block;margin:12px auto;max-width:300px;"
-     class="floating-btn">📘 Facebook Page</a>
-</section>
+  <a href="https://www.facebook.com/profile.php?id=61581798095955" target="_blank">
+    📘 Visit Facebook Page
+  </a>
+
+  <a href="https://www.facebook.com/share/p/14W7WzKb7QJ/" target="_blank">
+    ⭐ Leave Us a Feedback
+  </a>
+</div>
 
 <footer>
   © 2026 Print & Craft Collective • Student-friendly 💗
 </footer>
 
-<!-- FLOATING ORDER + COUNTDOWN -->
-<div class="floating-wrap">
-  <div class="countdown" id="countdown">⏳ Loading…</div>
-  <a class="floating-btn" href="https://m.me/61579128398313" target="_blank">
-    💬 Order Now
-  </a>
-</div>
+<!-- FLOATING COUNTDOWN -->
+<div class="countdown" id="countdown">⏰ Loading…</div>
 
-<!-- IMAGE ZOOM -->
+<!-- FLOATING ORDER NOW -->
+<a class="float-order" href="https://m.me/61579128398313" target="_blank">
+  💬 Order Now
+</a>
+
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <span class="lb-arrow lb-left" onclick="prevImg()">‹</span>
-  <img id="zoomed">
-  <span class="lb-arrow lb-right" onclick="nextImg()">›</span>
+  <button class="arrow left" onclick="prevZoom()">‹</button>
+  <img id="zoomedImg">
+  <button class="arrow right" onclick="nextZoom()">›</button>
 </div>
 
 <!-- PROMO POPUP -->
-<div class="lightbox" id="promo" style="background:rgba(0,0,0,.6);">
-  <div id="promoBox"
-       style="background:#fff;padding:25px;border-radius:20px;
-              text-align:center;max-width:320px;position:relative;">
-    <h3>🎁 Valentine Promo</h3>
-    <p>Try your luck to win a discount 💗</p>
-    <button class="view-btn" onclick="tryLuck()">TRY MY LUCK</button>
-    <br><br>
-    <button class="view-btn"
-            style="background:#ffd6e0;color:#ff4d6d"
-            onclick="closePromo()">Maybe later</button>
+<div id="promoOverlay" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+z-index:10000;
+justify-content:center;
+align-items:center;
+">
+  <div id="promoBox" style="
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  width:320px;
+  text-align:center;
+  position:relative;
+  ">
+    <button id="closePromo" style="
+    display:none;
+    position:absolute;
+    top:10px;
+    right:12px;
+    border:none;
+    background:none;
+    font-size:18px;
+    cursor:pointer;">✖</button>
+
+    <h3>🎁 Valentine’s Promo</h3>
+    <p>Try your luck to win discounts 💗</p>
+
+    <button onclick="tryLuck()" style="
+    padding:12px 26px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;">
+      TRY MY LUCK
+    </button>
   </div>
 </div>
 
 <script>
-/* TOGGLE DESIGNS */
+/* TOGGLE */
 function toggle(id){
   const el=document.getElementById(id);
   el.style.display = el.style.display==="block" ? "none" : "block";
 }
 
-/* SLIDER */
+/* SLIDE */
 function slide(btn,dir){
-  btn.parentElement.querySelector(".design-track").scrollLeft += dir*150;
+  btn.parentElement.querySelector(".design-track").scrollLeft += dir*160;
 }
 
-/* IMAGE ZOOM */
-let zoomImgs=[], zoomIndex=0;
+/* ZOOM */
+let zoomImages=[], zoomIndex=0;
 const lightbox=document.getElementById("lightbox");
-const zoomed=document.getElementById("zoomed");
+const zoomed=document.getElementById("zoomedImg");
 
 function zoom(img){
-  zoomImgs=[...img.parentElement.querySelectorAll("img")];
-  zoomIndex=zoomImgs.indexOf(img);
+  zoomImages=[...img.parentElement.querySelectorAll("img")];
+  zoomIndex=zoomImages.indexOf(img);
   zoomed.src=img.src;
   lightbox.style.display="flex";
   history.pushState({zoom:true},"");
 }
-function closeZoom(){ lightbox.style.display="none"; }
-function nextImg(){
-  zoomIndex=(zoomIndex+1)%zoomImgs.length;
-  zoomed.src=zoomImgs[zoomIndex].src;
+
+function closeZoom(){
+  lightbox.style.display="none";
 }
-function prevImg(){
-  zoomIndex=(zoomIndex-1+zoomImgs.length)%zoomImgs.length;
-  zoomed.src=zoomImgs[zoomIndex].src;
+
+function nextZoom(){
+  zoomIndex=(zoomIndex+1)%zoomImages.length;
+  zoomed.src=zoomImages[zoomIndex].src;
 }
+function prevZoom(){
+  zoomIndex=(zoomIndex-1+zoomImages.length)%zoomImages.length;
+  zoomed.src=zoomImages[zoomIndex].src;
+}
+
 lightbox.addEventListener("click",e=>{
   if(e.target===lightbox) closeZoom();
 });
-window.addEventListener("popstate",()=>{
-  if(lightbox.style.display==="flex") closeZoom();
-});
+window.addEventListener("popstate",()=>{ if(lightbox.style.display==="flex") closeZoom(); });
 
 /* COUNTDOWN */
 function startCountdown(){
   let year=new Date().getFullYear();
   let target=new Date(`February 14, ${year} 00:00:00`).getTime();
-  if(Date.now()>target)
-    target=new Date(`February 14, ${year+1} 00:00:00`).getTime();
+  if(Date.now()>target) target=new Date(`February 14, ${year+1} 00:00:00`).getTime();
 
   setInterval(()=>{
-    let d=target-Date.now();
-    let days=Math.floor(d/86400000);
-    let hrs=Math.floor((d/3600000)%24);
-    let mins=Math.floor((d/60000)%60);
-    let secs=Math.floor((d/1000)%60);
+    const d=target-Date.now();
+    const days=Math.floor(d/86400000);
+    const hrs=Math.floor((d/3600000)%24);
+    const mins=Math.floor((d/60000)%60);
+    const secs=Math.floor((d/1000)%60);
     document.getElementById("countdown").innerHTML=
       `💝 ${days}d ${hrs}h ${mins}m ${secs}s`;
   },1000);
 }
 startCountdown();
 
-/* PROMO */
+/* PROMO TIMER */
 setTimeout(()=>{
-  if(localStorage.getItem("promoShown")!==new Date().toDateString()){
-    document.getElementById("promo").style.display="flex";
+  if(!localStorage.getItem("promoShown")){
+    document.getElementById("promoOverlay").style.display="flex";
+    localStorage.setItem("promoShown","yes");
+    setTimeout(()=>document.getElementById("closePromo").style.display="block",5000);
   }
-},8000);
+}, Math.random()*4000+6000);
 
-function closePromo(){
-  localStorage.setItem("promoShown",new Date().toDateString());
-  document.getElementById("promo").style.display="none";
-}
+document.getElementById("closePromo").onclick=()=>{
+  document.getElementById("promoOverlay").style.display="none";
+};
 
 /* RANDOM CODE */
 function genCode(){
-  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
-  let code="";
-  for(let i=0;i<6;i++)
-    code+=chars[Math.floor(Math.random()*chars.length)];
-  return code;
+  return Math.random().toString(36).substring(2,8).toUpperCase();
 }
 
 /* TRY LUCK */
 function tryLuck(){
-  localStorage.setItem("promoShown",new Date().toDateString());
-  let roll=Math.random()*100;
-  let discount=0;
-  if(roll<70) discount=0;
-  else if(roll<90) discount=10;
-  else if(roll<98) discount=15;
-  else discount=20;
-
+  const roll=Math.random()*100;
   const box=document.getElementById("promoBox");
+  const now=new Date().toLocaleString();
 
-  if(discount===0){
-    box.innerHTML=`
-      <h3>😔 Better luck next time</h3>
-      <button class="view-btn" onclick="closePromo()">Close</button>`;
+  if(roll<50){
+    box.innerHTML=`<h3>😔 Better luck next time</h3>
+    <p>Try again tomorrow 💗</p>`;
     return;
   }
 
-  let code=genCode();
-  let date=new Date().toLocaleString();
+  let product="",percent=10;
+  if(roll<50.5){ product="💐 Fuzzywire Bouquet"; percent=20; }
+  else if(roll<95){ product="🖤 Polaroid Prints"; percent=10; }
+  else if(roll<98){ product="🎁 Polaroid Box Set"; percent=15; }
+  else{ product="🔑 Keychain / 📸 Photostrips"; percent=10; }
+
+  const code=genCode();
 
   box.innerHTML=`
-    <button id="closeX"
-            style="display:none;position:absolute;top:10px;right:15px;
-                   border:none;background:none;font-size:22px;cursor:pointer;">✖</button>
-    <h3>🎉 Congratulations!</h3>
-    <h2>${discount}% OFF</h2>
-    <p>Code: <b>${code}</b></p>
-    <p>${date}</p>
-    <p>📸 Screenshot & send to us</p>
-    <a class="view-btn" href="https://m.me/61579128398313" target="_blank">
-      Message now
-    </a>`;
-
-  // show X after 5 seconds
-  setTimeout(()=>{
-    document.getElementById("closeX").style.display="block";
-    document.getElementById("closeX").onclick=closePromo;
-  },5000);
+    <h3>🎉 CONGRATULATIONS!</h3>
+    <h2>${percent}% OFF</h2>
+    <p><strong>${product}</strong></p>
+    <div style="background:#fff0f5;padding:10px;border-radius:10px;margin:10px 0;">
+      CODE: <strong>${code}</strong>
+    </div>
+    <p style="font-size:12px;">${now}</p>
+    <p>📸 Screenshot & send this to us</p>
+    <a href="https://m.me/61579128398313" target="_blank"
+    style="display:inline-block;margin-top:10px;padding:12px 22px;background:#ff4d6d;color:#fff;border-radius:25px;text-decoration:none;">
+    Message Now</a>
+  `;
 }
 </script>
 
