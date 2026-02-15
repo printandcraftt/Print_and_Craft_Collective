@@ -2,102 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Our Products 💜</title>
+<title>Products - Print & Craft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:'Poppins',sans-serif;
-}
-
 body{
-  background:linear-gradient(180deg,#f5f0ff,#ffffff);
-  color:#2d1b3d;
-}
-
-/* HEADER */
-header{
-  background:linear-gradient(135deg,#6a00f4,#9d4edd);
-  color:#fff;
+  font-family:Poppins;
+  background:#f3e8ff;
+  margin:0;
   text-align:center;
-  padding:60px 20px;
-  border-bottom-left-radius:40px;
-  border-bottom-right-radius:40px;
 }
 
-header h1{
-  font-size:32px;
-}
-
-.back-btn{
-  display:inline-block;
-  margin-top:15px;
-  padding:8px 20px;
-  border-radius:30px;
-  background:#fff;
-  color:#6a00f4;
-  text-decoration:none;
-  font-weight:600;
-}
-
-/* PRODUCTS */
-section{
-  padding:70px 20px;
+header{
+  padding:40px;
+  background:#6a00f4;
+  color:#fff;
 }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:30px;
+  padding:50px;
 }
 
 .product-card{
-  background:#ffffff;
-  border-radius:30px;
-  padding:22px;
-  box-shadow:0 15px 45px rgba(106,0,244,.12);
-  text-align:center;
-  transition:.3s ease;
+  background:#fff;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 15px 30px rgba(106,0,244,0.2);
+  transition:.3s;
 }
 
 .product-card:hover{
-  transform:translateY(-10px);
+  transform:translateY(-8px);
 }
 
 .product-card img{
   width:100%;
-  border-radius:20px;
-}
-
-.price{
-  margin:12px 0;
-  font-weight:bold;
-  color:#6a00f4;
-}
-
-#order-float{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:linear-gradient(135deg,#6a00f4,#9d4edd);
-  color:#fff;
-  padding:16px 28px;
-  border-radius:40px;
-  font-weight:bold;
-  text-decoration:none;
-  box-shadow:0 10px 25px rgba(106,0,244,.3);
-}
-
-footer{
-  text-align:center;
-  padding:40px;
-  font-size:14px;
-  color:#777;
+  border-radius:15px;
 }
 </style>
 </head>
@@ -105,49 +50,27 @@ footer{
 <body>
 
 <header>
-  <h1>Our Products 💜</h1>
-  <a href="index.html" class="back-btn">← Back to Home</a>
+  <h1>Our Designs 💜</h1>
 </header>
-
-<section>
 
 <div class="products">
 
-<div class="product-card">
-  <img src="image/bouquet/Bouquet.jpg">
-  <h3>💐 Fuzzywire Bouquet</h3>
-  <div class="price">₱280 – ₱400</div>
-</div>
+  <div class="product-card">
+    <img src="image/bouquet/Bouquet.jpg">
+    <h3>Fuzzywire Bouquet</h3>
+  </div>
 
-<div class="product-card">
-  <img src="image/polaroid/Polaroid.jpg">
-  <h3>🖤 Polaroid Prints</h3>
-  <div class="price">Starts at ₱50</div>
-</div>
+  <div class="product-card">
+    <img src="image/polaroid/Polaroid.jpg">
+    <h3>Polaroid Prints</h3>
+  </div>
 
-<div class="product-card">
-  <img src="image/keychain/Keychain.jpg">
-  <h3>🔑 Keychain</h3>
-  <div class="price">₱20 – ₱35</div>
-</div>
-
-<div class="product-card">
-  <img src="image/frame/Frame.jpg">
-  <h3>🖼 Photo Frame</h3>
-  <div class="price">₱110</div>
-</div>
+  <div class="product-card">
+    <img src="image/keychain/Keychain.jpg">
+    <h3>Keychains</h3>
+  </div>
 
 </div>
-
-</section>
-
-<a id="order-float" href="https://m.me/61579128398313" target="_blank">
-💬 Order Now
-</a>
-
-<footer>
-© 2026 Print & Craft Collective • Crafted with 💜
-</footer>
 
 </body>
 </html>
