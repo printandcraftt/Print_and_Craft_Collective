@@ -8,47 +8,97 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --primary:#6a00f4;
+  --secondary:#9d4edd;
+  --bg:#f5f0ff;
+  --text:#2d1b3d;
+}
+
+body.dark{
+  --bg:#12002b;
+  --text:#fff;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
   font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
 }
 
 body{
-  background:linear-gradient(180deg,#f5f0ff,#ffffff);
-  text-align:center;
-  color:#2d1b3d;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-/* HEADER */
-header{
-  background:linear-gradient(135deg,#6a00f4,#9d4edd);
+/* LOADER */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#6a00f4;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
   color:#fff;
-  padding:80px 20px;
-  border-bottom-left-radius:40px;
-  border-bottom-right-radius:40px;
+  font-size:24px;
+  letter-spacing:2px;
 }
 
-header h1{
-  font-size:40px;
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:#ffffffcc;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:999;
 }
 
-header p{
-  margin-top:10px;
-  opacity:.9;
+nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:600;
+}
+
+.toggle-mode{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:6px 14px;
+  border-radius:20px;
+  cursor:pointer;
 }
 
 /* HERO */
 .hero{
-  padding:70px 20px;
+  text-align:center;
+  padding:100px 20px;
 }
 
-.hero img{
-  width:100%;
+.slider{
+  overflow:hidden;
   max-width:420px;
+  margin:40px auto;
   border-radius:30px;
-  box-shadow:0 20px 50px rgba(106,0,244,.2);
+  box-shadow:0 20px 50px rgba(106,0,244,.3);
+  cursor:grab;
+}
+
+.slides{
+  display:flex;
+  transition:transform .4s ease;
+}
+
+.slides img{
+  width:100%;
+  flex-shrink:0;
 }
 
 .hero button{
@@ -56,48 +106,224 @@ header p{
   padding:14px 40px;
   border:none;
   border-radius:40px;
-  background:linear-gradient(135deg,#6a00f4,#9d4edd);
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
   color:#fff;
-  font-size:16px;
   font-weight:600;
   cursor:pointer;
-  transition:.3s;
 }
 
-.hero button:hover{
-  transform:scale(1.08);
+/* COUNTERS */
+.counters{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:60px 20px;
+}
+
+.counter{
+  font-size:28px;
+  font-weight:700;
+  color:var(--primary);
+}
+
+/* FEATURES */
+.feature-card{
+  background:#fff;
+  padding:30px;
+  border-radius:20px;
+  margin:20px auto;
+  max-width:300px;
+  transition:.3s;
+  transform-style:preserve-3d;
+}
+
+.feature-card:hover{
+  transform:rotateY(8deg) rotateX(5deg);
+}
+
+/* REVIEWS */
+.review{
+  background:#fff;
+  padding:20px;
+  border-radius:20px;
+  margin:15px auto;
+  max-width:500px;
+}
+
+/* REVIEW FORM */
+.review-form{
+  margin-top:20px;
+}
+
+.review-form input,
+.review-form textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.review-form button{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:10px 20px;
+  border-radius:20px;
+  cursor:pointer;
 }
 
 footer{
   padding:40px;
-  font-size:14px;
-  color:#777;
+  text-align:center;
+  opacity:.7;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>💜 Print & Craft 💜</h1>
-  <p>Personalized prints & handmade crafts</p>
-</header>
+<div id="loader">Loading Print & Craft 💜</div>
+
+<nav>
+  <h2 style="color:var(--primary)">Print & Craft</h2>
+  <div>
+    <a href="#reviews">Reviews</a>
+    <a href="products.html">Products</a>
+    <button class="toggle-mode" onclick="toggleMode()">🌙</button>
+  </div>
+</nav>
 
 <section class="hero">
-  <!-- CHANGE THIS IMAGE -->
-  <img src="image/bouquet/Bouquet.jpg" alt="Featured Product">
+  <h1 style="color:var(--primary)">Handmade With Love 💜</h1>
 
-  <br>
+  <div class="slider" id="slider">
+    <div class="slides" id="slides">
+      <img src="image/bouquet/Bouquet.jpg">
+      <img src="image/polaroid/Polaroid.jpg">
+      <img src="image/keychain/Keychain.jpg">
+    </div>
+  </div>
 
-  <!-- GO TO PRODUCTS PAGE -->
   <a href="products.html">
     <button>View Designs</button>
   </a>
 </section>
 
+<!-- COUNTERS -->
+<section class="counters">
+  <div class="counter" data-target="500">0<br>Happy Clients</div>
+  <div class="counter" data-target="1200">0<br>Products Sold</div>
+  <div class="counter" data-target="3">0<br>Years Experience</div>
+</section>
+
+<!-- FEATURE WITH 3D EFFECT -->
+<section style="text-align:center">
+  <div class="feature-card">
+    💜 Handmade Quality
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="text-align:center;padding:60px 20px;">
+  <h2 style="color:var(--primary)">Customer Reviews</h2>
+
+  <div id="reviewList">
+    <div class="review">⭐⭐⭐⭐⭐ Amazing quality!</div>
+  </div>
+
+  <div class="review-form">
+    <input type="text" id="name" placeholder="Your Name">
+    <textarea id="message" placeholder="Your Review"></textarea>
+    <button onclick="addReview()">Submit Review</button>
+  </div>
+</section>
+
 <footer>
 © 2026 Print & Craft Collective • Crafted with 💜
 </footer>
+
+<script>
+/* LOADER */
+window.onload=()=>{
+  document.getElementById("loader").style.display="none";
+};
+
+/* DARK MODE */
+function toggleMode(){
+  document.body.classList.toggle("dark");
+}
+
+/* DRAGGABLE SLIDER */
+const slider=document.getElementById("slider");
+const slides=document.getElementById("slides");
+let isDown=false,startX,currentTranslate=0,prevTranslate=0,index=0;
+
+slider.addEventListener("mousedown",startDrag);
+slider.addEventListener("touchstart",startDrag);
+
+slider.addEventListener("mouseup",endDrag);
+slider.addEventListener("mouseleave",endDrag);
+slider.addEventListener("touchend",endDrag);
+
+slider.addEventListener("mousemove",drag);
+slider.addEventListener("touchmove",drag);
+
+function startDrag(e){
+  isDown=true;
+  startX=e.type.includes("mouse")?e.pageX:e.touches[0].clientX;
+}
+
+function drag(e){
+  if(!isDown)return;
+  const x=e.type.includes("mouse")?e.pageX:e.touches[0].clientX;
+  const diff=x-startX;
+  slides.style.transform=`translateX(${prevTranslate+diff}px)`;
+}
+
+function endDrag(e){
+  if(!isDown)return;
+  isDown=false;
+  const moved=parseInt(slides.style.transform.replace(/[^0-9\-]/g,""))||0;
+  if(moved<-100)index++;
+  if(moved>100)index--;
+  index=Math.max(0,Math.min(index,2));
+  currentTranslate=-index*slider.offsetWidth;
+  prevTranslate=currentTranslate;
+  slides.style.transform=`translateX(${currentTranslate}px)`;
+}
+
+/* COUNTER ANIMATION */
+const counters=document.querySelectorAll(".counter");
+counters.forEach(counter=>{
+  const update=()=>{
+    const target=+counter.getAttribute("data-target");
+    const count=+counter.innerText.split("\n")[0];
+    const inc=target/100;
+    if(count<target){
+      counter.innerHTML=Math.ceil(count+inc)+"<br>"+counter.innerHTML.split("<br>")[1];
+      setTimeout(update,20);
+    }else{
+      counter.innerHTML=target+"<br>"+counter.innerHTML.split("<br>")[1];
+    }
+  };
+  update();
+});
+
+/* ADD REVIEW */
+function addReview(){
+  const name=document.getElementById("name").value;
+  const message=document.getElementById("message").value;
+  if(name && message){
+    const div=document.createElement("div");
+    div.className="review";
+    div.innerHTML=`⭐⭐⭐⭐⭐ <b>${name}</b>: ${message}`;
+    document.getElementById("reviewList").appendChild(div);
+    document.getElementById("name").value="";
+    document.getElementById("message").value="";
+  }
+}
+</script>
 
 </body>
 </html>
