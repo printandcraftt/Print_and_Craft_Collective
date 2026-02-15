@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login 💜</title>
+<style>
+body{
+  font-family:Arial;
+  background:#f3e8ff;
+  text-align:center;
+  padding:100px;
+}
+input{
+  padding:10px;
+  margin:10px;
+  width:250px;
+}
+button{
+  padding:10px 20px;
+  background:#6a00f4;
+  color:#fff;
+  border:none;
+  border-radius:20px;
+}
+</style>
+</head>
+<body>
 
+<h1>Customer Login 💜</h1>
+
+<input type="email" id="email" placeholder="Email"><br>
+<input type="password" id="password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword }
+from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+import { getFirestore, doc, getDoc }
+from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCCM6d565SLeJvZ0zCM5h8bkj5UzsBZeQcA",
+  authDomain: "print-craft-9d708.firebaseapp.com",
+  projectId: "print-craft-9d708"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.login = async function(){
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try{
+    const userCredential = await signInWithEmailAndPassword(auth,email,password);
+    const user = userCredential.user;
+
+    const userRef = doc(db,"users",user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if(userSnap.exists() && userSnap.data().role === "admin"){
+      window.location.href="admin.html";
+    }else{
+      window.location.href="member.html";
+    }
+
+  }catch(error){
+    alert("Login failed ❌");
+    console.log(error);
+  }
+}
+</script>
+
+</body>
+</html>
