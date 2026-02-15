@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard 👑</title>
+<style>
+body{
+  font-family:Arial;
+  background:#f3e8ff;
+  padding:40px;
+}
+h1{
+  color:#6a00f4;
+}
+.card{
+  background:#fff;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+button{
+  padding:8px 15px;
+  background:#6a00f4;
+  color:#fff;
+  border:none;
+  border-radius:15px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
 
+<h1>Admin Dashboard 👑</h1>
+<button onclick="logout()">Logout</button>
+
+<div class="card">
+  <h3>Total Users</h3>
+  <p id="users">Loading...</p>
+</div>
+
+<div class="card">
+  <h3>Total Reviews</h3>
+  <p id="reviews">Loading...</p>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut }
+from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, doc, getDoc }
+from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCCM6d565SLeJvZ0zCM5h8bkj5UzsBZeQcA",
+  authDomain: "print-craft-9d708.firebaseapp.com",
+  projectId: "print-craft-9d708"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Protect page and check role
+onAuthStateChanged(auth, async (user)=>{
+  if(!user){
+    window.location.href="login.html";
+    return;
+  }
+
+  const userRef = doc(db,"users",user.uid);
+  const userSnap = await getDoc(userRef);
+
+  if(!userSnap.exists() || userSnap.data().role !== "admin"){
+    alert("Access denied ❌");
+    window.location.href="index.html";
+    return;
+  }
+
+  loadData();
+});
+
+async function loadData(){
+  const usersSnap = await getDocs(collection(db,"users"));
+  document.getElementById("users").innerText = usersSnap.size;
+
+  const reviewSnap = await getDocs(collection(db,"reviews"));
+  document.getElementById("reviews").innerText = reviewSnap.size;
+}
+
+window.logout = function(){
+  signOut(auth);
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
