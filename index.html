@@ -4,112 +4,98 @@
 <meta charset="UTF-8">
 <title>Print & Craft 💜</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --primary:#6a00f4;
-  --secondary:#9d4edd;
-  --bg:#f5f0ff;
-  --text:#2d1b3d;
-}
-
-body.dark{
-  --bg:#12002b;
-  --text:#ffffff;
-}
-
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:'Poppins',sans-serif;
+  box-sizing:border-box;
+  font-family:Poppins, Arial, sans-serif;
 }
 
 body{
-  background:var(--bg);
-  color:var(--text);
+  background:linear-gradient(135deg,#f3e8ff,#ffffff);
+  color:#4b0082;
+  text-align:center;
 }
 
-/* REVIEW SECTION */
-.review{
-  background:#fff;
-  padding:20px;
-  border-radius:20px;
-  margin:15px auto;
-  max-width:500px;
+header{
+  padding:50px 20px;
+  background:linear-gradient(135deg,#6a00f4,#9d4edd);
+  color:#fff;
 }
 
-.review-form{
-  max-width:500px;
-  margin:20px auto;
+section{
+  padding:60px 20px;
 }
 
-.review-form input,
-.review-form textarea{
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  border-radius:10px;
+input, textarea{
+  padding:12px;
+  width:260px;
+  margin:8px;
+  border-radius:12px;
   border:1px solid #ccc;
 }
 
-.review-form button{
-  background:var(--primary);
+button{
+  padding:12px 25px;
+  background:#6a00f4;
   color:#fff;
   border:none;
-  padding:10px 20px;
-  border-radius:20px;
+  border-radius:25px;
   cursor:pointer;
+  font-weight:bold;
+  transition:.3s;
 }
 
-/* STAR RATING */
-.stars{
-  display:flex;
-  gap:5px;
-  font-size:28px;
-  cursor:pointer;
-  margin:10px 0;
+button:hover{
+  background:#5200c9;
 }
 
-.stars span{
-  color:#ccc;
-  transition:.2s;
+.review-card{
+  background:#fff;
+  padding:15px;
+  margin:15px auto;
+  max-width:400px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-.stars span.active{
-  color:gold;
+footer{
+  padding:20px;
+  font-size:14px;
+  color:#777;
 }
 </style>
 </head>
 
 <body>
 
-<section style="text-align:center;padding:60px 20px;">
-  <h2 style="color:#6a00f4;">Customer Reviews</h2>
+<header>
+  <h1>💜 Print & Craft 💜</h1>
+  <p>Handmade with Love</p>
+</header>
 
+<section>
+  <h2>Leave Your Feedback 💌</h2>
+
+  <input type="text" id="name" placeholder="Your Name"><br>
+  <textarea id="message" placeholder="Your Feedback"></textarea><br>
+
+  <button onclick="addReview()">Submit Feedback</button>
+
+  <h2 style="margin-top:50px;">Customer Reviews 💬</h2>
   <div id="reviewList"></div>
-
-  <div class="review-form">
-    <input type="text" id="name" placeholder="Your Name">
-
-    <!-- STAR RATING -->
-    <div class="stars" id="starRating">
-      <span data-value="1">★</span>
-      <span data-value="2">★</span>
-      <span data-value="3">★</span>
-      <span data-value="4">★</span>
-      <span data-value="5">★</span>
-    </div>
-
-    <textarea id="message" placeholder="Your Review"></textarea>
-    <button onclick="addReview()">Submit Review</button>
-  </div>
 </section>
 
+<footer>
+  © 2026 Print & Craft Collective 💜
+</footer>
+
 <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } 
+import { getFirestore, collection, addDoc, getDocs }
 from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -124,76 +110,58 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* STAR CONTROL */
-let selectedRating = 0;
-const stars = document.querySelectorAll("#starRating span");
-
-stars.forEach(star=>{
-  star.addEventListener("click",()=>{
-    selectedRating = star.dataset.value;
-    updateStars(selectedRating);
-  });
-});
-
-function updateStars(rating){
-  stars.forEach(star=>{
-    star.classList.remove("active");
-    if(star.dataset.value <= rating){
-      star.classList.add("active");
-    }
-  });
-}
-
-/* SAVE REVIEW */
+// SAVE REVIEW
 window.addReview = async function(){
+
   const name = document.getElementById("name").value;
   const message = document.getElementById("message").value;
 
-  if(!name || !message || selectedRating == 0){
-    return alert("Please fill all fields and select rating ⭐");
+  if(!name || !message){
+    alert("Please fill all fields 💜");
+    return;
   }
 
-  await addDoc(collection(db,"reviews"),{
-    name:name,
-    message:message,
-    rating:Number(selectedRating),
-    created:new Date()
-  });
+  try{
+    await addDoc(collection(db,"reviews"),{
+      name:name,
+      message:message,
+      created:new Date()
+    });
 
-  alert("Review submitted 💜");
+    alert("Feedback submitted 💜 Thank you!");
 
-  document.getElementById("name").value="";
-  document.getElementById("message").value="";
-  selectedRating=0;
-  updateStars(0);
+    document.getElementById("name").value="";
+    document.getElementById("message").value="";
 
-  loadReviews();
+    loadReviews();
+
+  }catch(error){
+    alert("Error saving review. Check console.");
+    console.log(error);
+  }
 }
 
-/* LOAD REVIEWS */
+// LOAD REVIEWS
 async function loadReviews(){
+
   const querySnapshot = await getDocs(collection(db,"reviews"));
   const reviewList = document.getElementById("reviewList");
   reviewList.innerHTML="";
 
   querySnapshot.forEach(doc=>{
     const data = doc.data();
-    const div = document.createElement("div");
-    div.className="review";
 
-    let starsDisplay="";
-    for(let i=0;i<data.rating;i++){
-      starsDisplay+="⭐";
-    }
-
-    div.innerHTML=`<div>${starsDisplay}</div>
-                   <b>${data.name}</b><br>
-                   ${data.message}`;
-    reviewList.appendChild(div);
+    reviewList.innerHTML += `
+      <div class="review-card">
+        <b>${data.name}</b>
+        <p>${data.message}</p>
+      </div>
+    `;
   });
 }
 
 loadReviews();
+
 </script>
 
 </body>
