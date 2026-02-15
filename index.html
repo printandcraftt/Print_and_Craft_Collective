@@ -17,7 +17,7 @@
 
 body.dark{
   --bg:#12002b;
-  --text:#fff;
+  --text:#ffffff;
 }
 
 *{
@@ -25,7 +25,6 @@ body.dark{
   margin:0;
   padding:0;
   font-family:'Poppins',sans-serif;
-  scroll-behavior:smooth;
 }
 
 body{
@@ -42,10 +41,9 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  z-index:9999;
   color:#fff;
-  font-size:24px;
-  letter-spacing:2px;
+  font-size:22px;
+  z-index:9999;
 }
 
 /* NAV */
@@ -57,7 +55,6 @@ nav{
   backdrop-filter:blur(10px);
   position:sticky;
   top:0;
-  z-index:999;
 }
 
 nav a{
@@ -79,7 +76,7 @@ nav a{
 /* HERO */
 .hero{
   text-align:center;
-  padding:100px 20px;
+  padding:80px 20px;
 }
 
 .slider{
@@ -102,7 +99,7 @@ nav a{
 }
 
 .hero button{
-  margin-top:30px;
+  margin-top:20px;
   padding:14px 40px;
   border:none;
   border-radius:40px;
@@ -118,6 +115,7 @@ nav a{
   justify-content:center;
   gap:40px;
   padding:60px 20px;
+  flex-wrap:wrap;
 }
 
 .counter{
@@ -126,7 +124,7 @@ nav a{
   color:var(--primary);
 }
 
-/* FEATURES */
+/* FEATURE */
 .feature-card{
   background:#fff;
   padding:30px;
@@ -150,9 +148,9 @@ nav a{
   max-width:500px;
 }
 
-/* REVIEW FORM */
 .review-form{
-  margin-top:20px;
+  max-width:500px;
+  margin:20px auto;
 }
 
 .review-form input,
@@ -188,7 +186,6 @@ footer{
 <nav>
   <h2 style="color:var(--primary)">Print & Craft</h2>
   <div>
-    <a href="#reviews">Reviews</a>
     <a href="products.html">Products</a>
     <button class="toggle-mode" onclick="toggleMode()">🌙</button>
   </div>
@@ -210,27 +207,22 @@ footer{
   </a>
 </section>
 
-<!-- COUNTERS -->
 <section class="counters">
   <div class="counter" data-target="500">0<br>Happy Clients</div>
   <div class="counter" data-target="1200">0<br>Products Sold</div>
   <div class="counter" data-target="3">0<br>Years Experience</div>
 </section>
 
-<!-- FEATURE WITH 3D EFFECT -->
 <section style="text-align:center">
   <div class="feature-card">
     💜 Handmade Quality
   </div>
 </section>
 
-<!-- REVIEWS -->
 <section id="reviews" style="text-align:center;padding:60px 20px;">
   <h2 style="color:var(--primary)">Customer Reviews</h2>
 
-  <div id="reviewList">
-    <div class="review">⭐⭐⭐⭐⭐ Amazing quality!</div>
-  </div>
+  <div id="reviewList"></div>
 
   <div class="review-form">
     <input type="text" id="name" placeholder="Your Name">
@@ -243,62 +235,38 @@ footer{
 © 2026 Print & Craft Collective • Crafted with 💜
 </footer>
 
-<script>
-/* LOADER */
-window.onload=()=>{
-  document.getElementById("loader").style.display="none";
+<!-- FIREBASE + ALL JS -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs } 
+from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCCM6d565SLeJvZ0zCM5h8bkj5UzsBZeQcA",
+  authDomain: "print-craft-9d708.firebaseapp.com",
+  projectId: "print-craft-9d708",
+  storageBucket: "print-craft-9d708.firebasestorage.app",
+  messagingSenderId: "873230926106",
+  appId: "1:873230926106:web:464e08d3ce7d111b6aeca3"
 };
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* LOADER */
+window.onload=()=>{document.getElementById("loader").style.display="none";}
+
 /* DARK MODE */
-function toggleMode(){
+window.toggleMode=function(){
   document.body.classList.toggle("dark");
 }
 
-/* DRAGGABLE SLIDER */
-const slider=document.getElementById("slider");
-const slides=document.getElementById("slides");
-let isDown=false,startX,currentTranslate=0,prevTranslate=0,index=0;
-
-slider.addEventListener("mousedown",startDrag);
-slider.addEventListener("touchstart",startDrag);
-
-slider.addEventListener("mouseup",endDrag);
-slider.addEventListener("mouseleave",endDrag);
-slider.addEventListener("touchend",endDrag);
-
-slider.addEventListener("mousemove",drag);
-slider.addEventListener("touchmove",drag);
-
-function startDrag(e){
-  isDown=true;
-  startX=e.type.includes("mouse")?e.pageX:e.touches[0].clientX;
-}
-
-function drag(e){
-  if(!isDown)return;
-  const x=e.type.includes("mouse")?e.pageX:e.touches[0].clientX;
-  const diff=x-startX;
-  slides.style.transform=`translateX(${prevTranslate+diff}px)`;
-}
-
-function endDrag(e){
-  if(!isDown)return;
-  isDown=false;
-  const moved=parseInt(slides.style.transform.replace(/[^0-9\-]/g,""))||0;
-  if(moved<-100)index++;
-  if(moved>100)index--;
-  index=Math.max(0,Math.min(index,2));
-  currentTranslate=-index*slider.offsetWidth;
-  prevTranslate=currentTranslate;
-  slides.style.transform=`translateX(${currentTranslate}px)`;
-}
-
-/* COUNTER ANIMATION */
-const counters=document.querySelectorAll(".counter");
-counters.forEach(counter=>{
+/* COUNTER */
+document.querySelectorAll(".counter").forEach(counter=>{
   const update=()=>{
-    const target=+counter.getAttribute("data-target");
-    const count=+counter.innerText.split("\n")[0];
+    const target=+counter.dataset.target;
+    const count=parseInt(counter.innerText);
     const inc=target/100;
     if(count<target){
       counter.innerHTML=Math.ceil(count+inc)+"<br>"+counter.innerHTML.split("<br>")[1];
@@ -310,19 +278,40 @@ counters.forEach(counter=>{
   update();
 });
 
-/* ADD REVIEW */
-function addReview(){
+/* SAVE REVIEW */
+window.addReview=async function(){
   const name=document.getElementById("name").value;
   const message=document.getElementById("message").value;
-  if(name && message){
+
+  if(!name||!message) return alert("Fill all fields");
+
+  await addDoc(collection(db,"reviews"),{
+    name:name,
+    message:message,
+    created:new Date()
+  });
+
+  alert("Review submitted 💜");
+  document.getElementById("name").value="";
+  document.getElementById("message").value="";
+  loadReviews();
+}
+
+/* LOAD REVIEWS */
+async function loadReviews(){
+  const querySnapshot=await getDocs(collection(db,"reviews"));
+  const reviewList=document.getElementById("reviewList");
+  reviewList.innerHTML="";
+  querySnapshot.forEach(doc=>{
+    const data=doc.data();
     const div=document.createElement("div");
     div.className="review";
-    div.innerHTML=`⭐⭐⭐⭐⭐ <b>${name}</b>: ${message}`;
-    document.getElementById("reviewList").appendChild(div);
-    document.getElementById("name").value="";
-    document.getElementById("message").value="";
-  }
+    div.innerHTML=`⭐⭐⭐⭐⭐ <b>${data.name}</b>: ${data.message}`;
+    reviewList.appendChild(div);
+  });
 }
+loadReviews();
+
 </script>
 
 </body>
