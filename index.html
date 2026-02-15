@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Print & Craft 💜</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -30,116 +29,9 @@ body.dark{
 body{
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;
 }
 
-/* LOADER */
-#loader{
-  position:fixed;
-  inset:0;
-  background:#6a00f4;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-  font-size:22px;
-  z-index:9999;
-}
-
-/* NAV */
-nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
-  background:#ffffffcc;
-  backdrop-filter:blur(10px);
-  position:sticky;
-  top:0;
-}
-
-nav a{
-  margin-left:20px;
-  text-decoration:none;
-  color:var(--primary);
-  font-weight:600;
-}
-
-.toggle-mode{
-  background:var(--primary);
-  color:#fff;
-  border:none;
-  padding:6px 14px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-/* HERO */
-.hero{
-  text-align:center;
-  padding:80px 20px;
-}
-
-.slider{
-  overflow:hidden;
-  max-width:420px;
-  margin:40px auto;
-  border-radius:30px;
-  box-shadow:0 20px 50px rgba(106,0,244,.3);
-  cursor:grab;
-}
-
-.slides{
-  display:flex;
-  transition:transform .4s ease;
-}
-
-.slides img{
-  width:100%;
-  flex-shrink:0;
-}
-
-.hero button{
-  margin-top:20px;
-  padding:14px 40px;
-  border:none;
-  border-radius:40px;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* COUNTERS */
-.counters{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  padding:60px 20px;
-  flex-wrap:wrap;
-}
-
-.counter{
-  font-size:28px;
-  font-weight:700;
-  color:var(--primary);
-}
-
-/* FEATURE */
-.feature-card{
-  background:#fff;
-  padding:30px;
-  border-radius:20px;
-  margin:20px auto;
-  max-width:300px;
-  transition:.3s;
-  transform-style:preserve-3d;
-}
-
-.feature-card:hover{
-  transform:rotateY(8deg) rotateX(5deg);
-}
-
-/* REVIEWS */
+/* REVIEW SECTION */
 .review{
   background:#fff;
   padding:20px;
@@ -171,73 +63,51 @@ nav a{
   cursor:pointer;
 }
 
-footer{
-  padding:40px;
-  text-align:center;
-  opacity:.7;
+/* STAR RATING */
+.stars{
+  display:flex;
+  gap:5px;
+  font-size:28px;
+  cursor:pointer;
+  margin:10px 0;
+}
+
+.stars span{
+  color:#ccc;
+  transition:.2s;
+}
+
+.stars span.active{
+  color:gold;
 }
 </style>
 </head>
 
 <body>
 
-<div id="loader">Loading Print & Craft 💜</div>
-
-<nav>
-  <h2 style="color:var(--primary)">Print & Craft</h2>
-  <div>
-    <a href="products.html">Products</a>
-    <button class="toggle-mode" onclick="toggleMode()">🌙</button>
-  </div>
-</nav>
-
-<section class="hero">
-  <h1 style="color:var(--primary)">Handmade With Love 💜</h1>
-
-  <div class="slider" id="slider">
-    <div class="slides" id="slides">
-      <img src="image/bouquet/Bouquet.jpg">
-      <img src="image/polaroid/Polaroid.jpg">
-      <img src="image/keychain/Keychain.jpg">
-    </div>
-  </div>
-
-  <a href="products.html">
-    <button>View Designs</button>
-  </a>
-</section>
-
-<section class="counters">
-  <div class="counter" data-target="500">0<br>Happy Clients</div>
-  <div class="counter" data-target="1200">0<br>Products Sold</div>
-  <div class="counter" data-target="3">0<br>Years Experience</div>
-</section>
-
-<section style="text-align:center">
-  <div class="feature-card">
-    💜 Handmade Quality
-  </div>
-</section>
-
-<section id="reviews" style="text-align:center;padding:60px 20px;">
-  <h2 style="color:var(--primary)">Customer Reviews</h2>
+<section style="text-align:center;padding:60px 20px;">
+  <h2 style="color:#6a00f4;">Customer Reviews</h2>
 
   <div id="reviewList"></div>
 
   <div class="review-form">
     <input type="text" id="name" placeholder="Your Name">
+
+    <!-- STAR RATING -->
+    <div class="stars" id="starRating">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+
     <textarea id="message" placeholder="Your Review"></textarea>
     <button onclick="addReview()">Submit Review</button>
   </div>
 </section>
 
-<footer>
-© 2026 Print & Craft Collective • Crafted with 💜
-</footer>
-
-<!-- FIREBASE + ALL JS -->
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } 
 from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
@@ -254,64 +124,76 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* LOADER */
-window.onload=()=>{document.getElementById("loader").style.display="none";}
+/* STAR CONTROL */
+let selectedRating = 0;
+const stars = document.querySelectorAll("#starRating span");
 
-/* DARK MODE */
-window.toggleMode=function(){
-  document.body.classList.toggle("dark");
-}
-
-/* COUNTER */
-document.querySelectorAll(".counter").forEach(counter=>{
-  const update=()=>{
-    const target=+counter.dataset.target;
-    const count=parseInt(counter.innerText);
-    const inc=target/100;
-    if(count<target){
-      counter.innerHTML=Math.ceil(count+inc)+"<br>"+counter.innerHTML.split("<br>")[1];
-      setTimeout(update,20);
-    }else{
-      counter.innerHTML=target+"<br>"+counter.innerHTML.split("<br>")[1];
-    }
-  };
-  update();
+stars.forEach(star=>{
+  star.addEventListener("click",()=>{
+    selectedRating = star.dataset.value;
+    updateStars(selectedRating);
+  });
 });
 
-/* SAVE REVIEW */
-window.addReview=async function(){
-  const name=document.getElementById("name").value;
-  const message=document.getElementById("message").value;
+function updateStars(rating){
+  stars.forEach(star=>{
+    star.classList.remove("active");
+    if(star.dataset.value <= rating){
+      star.classList.add("active");
+    }
+  });
+}
 
-  if(!name||!message) return alert("Fill all fields");
+/* SAVE REVIEW */
+window.addReview = async function(){
+  const name = document.getElementById("name").value;
+  const message = document.getElementById("message").value;
+
+  if(!name || !message || selectedRating == 0){
+    return alert("Please fill all fields and select rating ⭐");
+  }
 
   await addDoc(collection(db,"reviews"),{
     name:name,
     message:message,
+    rating:Number(selectedRating),
     created:new Date()
   });
 
   alert("Review submitted 💜");
+
   document.getElementById("name").value="";
   document.getElementById("message").value="";
+  selectedRating=0;
+  updateStars(0);
+
   loadReviews();
 }
 
 /* LOAD REVIEWS */
 async function loadReviews(){
-  const querySnapshot=await getDocs(collection(db,"reviews"));
-  const reviewList=document.getElementById("reviewList");
+  const querySnapshot = await getDocs(collection(db,"reviews"));
+  const reviewList = document.getElementById("reviewList");
   reviewList.innerHTML="";
+
   querySnapshot.forEach(doc=>{
-    const data=doc.data();
-    const div=document.createElement("div");
+    const data = doc.data();
+    const div = document.createElement("div");
     div.className="review";
-    div.innerHTML=`⭐⭐⭐⭐⭐ <b>${data.name}</b>: ${data.message}`;
+
+    let starsDisplay="";
+    for(let i=0;i<data.rating;i++){
+      starsDisplay+="⭐";
+    }
+
+    div.innerHTML=`<div>${starsDisplay}</div>
+                   <b>${data.name}</b><br>
+                   ${data.message}`;
     reviewList.appendChild(div);
   });
 }
-loadReviews();
 
+loadReviews();
 </script>
 
 </body>
