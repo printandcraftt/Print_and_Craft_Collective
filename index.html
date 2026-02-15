@@ -52,6 +52,16 @@ button:hover{
   background:#5200c9;
 }
 
+.star{
+  font-size:28px;
+  cursor:pointer;
+  color:#ccc;
+}
+
+.star.active{
+  color:gold;
+}
+
 .review-card{
   background:#fff;
   padding:15px;
@@ -80,6 +90,16 @@ footer{
   <h2>Leave Your Feedback 💌</h2>
 
   <input type="text" id="name" placeholder="Your Name"><br>
+
+  <!-- STAR RATING -->
+  <div id="starContainer">
+    <span class="star" onclick="selectStar(1)">★</span>
+    <span class="star" onclick="selectStar(2)">★</span>
+    <span class="star" onclick="selectStar(3)">★</span>
+    <span class="star" onclick="selectStar(4)">★</span>
+    <span class="star" onclick="selectStar(5)">★</span>
+  </div>
+
   <textarea id="message" placeholder="Your Feedback"></textarea><br>
 
   <button onclick="addReview()">Submit Feedback</button>
@@ -110,14 +130,26 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let selectedRating = 0;
+
+// SELECT STAR
+window.selectStar = function(rating){
+  selectedRating = rating;
+
+  const stars = document.querySelectorAll(".star");
+  stars.forEach((star,index)=>{
+    star.classList.toggle("active", index < rating);
+  });
+}
+
 // SAVE REVIEW
 window.addReview = async function(){
 
   const name = document.getElementById("name").value;
   const message = document.getElementById("message").value;
 
-  if(!name || !message){
-    alert("Please fill all fields 💜");
+  if(!name || !message || selectedRating === 0){
+    alert("Please fill all fields and select star rating 💜");
     return;
   }
 
@@ -125,6 +157,7 @@ window.addReview = async function(){
     await addDoc(collection(db,"reviews"),{
       name:name,
       message:message,
+      rating:selectedRating,
       created:new Date()
     });
 
@@ -132,11 +165,16 @@ window.addReview = async function(){
 
     document.getElementById("name").value="";
     document.getElementById("message").value="";
+    selectedRating=0;
+
+    document.querySelectorAll(".star").forEach(star=>{
+      star.classList.remove("active");
+    });
 
     loadReviews();
 
   }catch(error){
-    alert("Error saving review. Check console.");
+    alert("Error saving review.");
     console.log(error);
   }
 }
@@ -151,8 +189,14 @@ async function loadReviews(){
   querySnapshot.forEach(doc=>{
     const data = doc.data();
 
+    let stars="";
+    for(let i=0;i<data.rating;i++){
+      stars+="★";
+    }
+
     reviewList.innerHTML += `
       <div class="review-card">
+        <div style="color:gold;font-size:18px;">${stars}</div>
         <b>${data.name}</b>
         <p>${data.message}</p>
       </div>
