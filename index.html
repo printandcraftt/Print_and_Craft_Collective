@@ -5,106 +5,169 @@
 <title>Print & Craft 💜</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Poppins, Arial, sans-serif;
+  font-family:'Poppins',sans-serif;
 }
 
 body{
   background:linear-gradient(135deg,#f3e8ff,#ffffff);
   color:#4b0082;
+  transition:.4s;
+}
+
+/* HERO */
+.hero{
+  height:90vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   text-align:center;
-}
-
-header{
-  padding:50px 20px;
-  background:linear-gradient(135deg,#6a00f4,#9d4edd);
+  background:linear-gradient(135deg,#6a00f4,#9d4edd,#c77dff);
   color:#fff;
+  position:relative;
+  overflow:hidden;
 }
 
-section{
-  padding:60px 20px;
+.hero-content h1{
+  font-size:50px;
 }
 
-input, textarea{
-  padding:12px;
-  width:260px;
-  margin:8px;
-  border-radius:12px;
-  border:1px solid #ccc;
+.hero-content p{
+  margin:20px 0;
+  font-size:20px;
 }
 
-button{
-  padding:12px 25px;
-  background:#6a00f4;
-  color:#fff;
-  border:none;
-  border-radius:25px;
-  cursor:pointer;
+.hero-btn{
+  padding:15px 35px;
+  background:#fff;
+  color:#6a00f4;
+  text-decoration:none;
+  border-radius:30px;
   font-weight:bold;
   transition:.3s;
 }
 
-button:hover{
-  background:#5200c9;
+.hero-btn:hover{
+  transform:scale(1.05);
+}
+
+/* Floating blobs */
+.hero::before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:rgba(255,255,255,0.2);
+  border-radius:50%;
+  top:-80px;
+  left:-80px;
+  animation:float 6s infinite alternate ease-in-out;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  width:200px;
+  height:200px;
+  background:rgba(255,255,255,0.15);
+  border-radius:50%;
+  bottom:-60px;
+  right:-60px;
+  animation:float 5s infinite alternate ease-in-out;
+}
+
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(25px);}
+}
+
+/* SECTION */
+section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Reviews */
+.review-card{
+  background:#fff;
+  padding:20px;
+  margin:20px auto;
+  max-width:450px;
+  border-radius:20px;
+  box-shadow:0 15px 30px rgba(106,0,244,0.15);
+  transition:.3s;
+}
+
+.review-card:hover{
+  transform:translateY(-5px);
 }
 
 .star{
-  font-size:28px;
-  cursor:pointer;
-  color:#ccc;
-}
-
-.star.active{
+  font-size:22px;
   color:gold;
 }
 
-.review-card{
+/* Dark mode */
+.dark{
+  background:#121212;
+  color:#fff;
+}
+
+.dark .review-card{
+  background:#1e1e1e;
+}
+
+/* Toggle button */
+#themeToggle{
+  position:fixed;
+  top:20px;
+  right:20px;
   background:#fff;
-  padding:15px;
-  margin:15px auto;
-  max-width:400px;
-  border-radius:15px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  border:none;
+  padding:10px;
+  border-radius:50%;
+  cursor:pointer;
 }
 
 footer{
-  padding:20px;
+  padding:30px;
+  text-align:center;
   font-size:14px;
-  color:#777;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>💜 Print & Craft 💜</h1>
-  <p>Handmade with Love</p>
+<button id="themeToggle">🌙</button>
+
+<header class="hero">
+  <div class="hero-content">
+    <h1>Print & Craft 💜</h1>
+    <p>Handmade gifts that speak love.</p>
+    <a href="products.html" class="hero-btn">View Designs</a>
+  </div>
 </header>
 
-<section>
-  <h2>Leave Your Feedback 💌</h2>
-
-  <input type="text" id="name" placeholder="Your Name"><br>
-
-  <!-- STAR RATING -->
-  <div id="starContainer">
-    <span class="star" onclick="selectStar(1)">★</span>
-    <span class="star" onclick="selectStar(2)">★</span>
-    <span class="star" onclick="selectStar(3)">★</span>
-    <span class="star" onclick="selectStar(4)">★</span>
-    <span class="star" onclick="selectStar(5)">★</span>
-  </div>
-
-  <textarea id="message" placeholder="Your Feedback"></textarea><br>
-
-  <button onclick="addReview()">Submit Feedback</button>
-
-  <h2 style="margin-top:50px;">Customer Reviews 💬</h2>
+<section class="fade">
+  <h2>Customer Reviews 💬</h2>
   <div id="reviewList"></div>
 </section>
 
@@ -113,82 +176,26 @@ footer{
 </footer>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs }
+import { getFirestore, collection, getDocs }
 from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCCM6d565SLeJvZ0zCM5h8bkj5UzsBZeQcA",
   authDomain: "print-craft-9d708.firebaseapp.com",
-  projectId: "print-craft-9d708",
-  storageBucket: "print-craft-9d708.firebasestorage.app",
-  messagingSenderId: "873230926106",
-  appId: "1:873230926106:web:464e08d3ce7d111b6aeca3"
+  projectId: "print-craft-9d708"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-let selectedRating = 0;
-
-// SELECT STAR
-window.selectStar = function(rating){
-  selectedRating = rating;
-
-  const stars = document.querySelectorAll(".star");
-  stars.forEach((star,index)=>{
-    star.classList.toggle("active", index < rating);
-  });
-}
-
-// SAVE REVIEW
-window.addReview = async function(){
-
-  const name = document.getElementById("name").value;
-  const message = document.getElementById("message").value;
-
-  if(!name || !message || selectedRating === 0){
-    alert("Please fill all fields and select star rating 💜");
-    return;
-  }
-
-  try{
-    await addDoc(collection(db,"reviews"),{
-      name:name,
-      message:message,
-      rating:selectedRating,
-      created:new Date()
-    });
-
-    alert("Feedback submitted 💜 Thank you!");
-
-    document.getElementById("name").value="";
-    document.getElementById("message").value="";
-    selectedRating=0;
-
-    document.querySelectorAll(".star").forEach(star=>{
-      star.classList.remove("active");
-    });
-
-    loadReviews();
-
-  }catch(error){
-    alert("Error saving review.");
-    console.log(error);
-  }
-}
-
-// LOAD REVIEWS
 async function loadReviews(){
-
   const querySnapshot = await getDocs(collection(db,"reviews"));
   const reviewList = document.getElementById("reviewList");
   reviewList.innerHTML="";
 
   querySnapshot.forEach(doc=>{
     const data = doc.data();
-
     let stars="";
     for(let i=0;i<data.rating;i++){
       stars+="★";
@@ -196,7 +203,7 @@ async function loadReviews(){
 
     reviewList.innerHTML += `
       <div class="review-card">
-        <div style="color:gold;font-size:18px;">${stars}</div>
+        <div class="star">${stars}</div>
         <b>${data.name}</b>
         <p>${data.message}</p>
       </div>
@@ -205,7 +212,26 @@ async function loadReviews(){
 }
 
 loadReviews();
+</script>
 
+<script>
+/* Dark Mode */
+document.getElementById("themeToggle").onclick = ()=>{
+  document.body.classList.toggle("dark");
+}
+
+/* Fade on scroll */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll(".fade").forEach(el=>{
+  observer.observe(el);
+});
 </script>
 
 </body>
